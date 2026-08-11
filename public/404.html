@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Page not found — Kontora Designs</title>
+		<meta name="robots" content="noindex" />
+		<link rel="icon" href="/kontora-designs/favicon.svg" type="image/svg+xml" />
+		<style>
+			:root {
+				--ink: #0c0a0b;
+				--bone: #ece6e5;
+				--dim: #948a8c;
+				--pink: #ee7e9b;
+				--accent: #c0707f;
+			}
+			* { box-sizing: border-box; margin: 0; }
+			html, body { height: 100%; }
+			body {
+				background: radial-gradient(120% 90% at 50% -10%, #1a1416, var(--ink) 60%);
+				color: var(--bone);
+				font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+				display: grid;
+				place-items: center;
+				text-align: center;
+				padding: 2rem;
+				min-height: 100%;
+			}
+			.mark { width: 44px; height: 44px; margin: 0 auto 2.5rem; display: block; }
+			.code {
+				font-family: 'Archivo', system-ui, sans-serif;
+				font-size: clamp(5rem, 22vw, 12rem);
+				font-weight: 800;
+				line-height: 0.9;
+				letter-spacing: -0.04em;
+				background: linear-gradient(180deg, var(--bone), var(--accent));
+				-webkit-background-clip: text;
+				background-clip: text;
+				color: transparent;
+			}
+			h1 {
+				font-size: clamp(1.25rem, 3vw, 1.75rem);
+				font-weight: 600;
+				margin-top: 0.5rem;
+			}
+			p { color: var(--dim); margin: 1rem auto 2.5rem; max-width: 34ch; line-height: 1.6; }
+			a.home {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.6rem;
+				padding: 0.9rem 1.6rem;
+				border-radius: 999px;
+				background: var(--accent);
+				color: var(--ink);
+				font-weight: 600;
+				letter-spacing: 0.04em;
+				text-decoration: none;
+				transition: transform 0.3s ease, background 0.3s ease;
+			}
+			a.home:hover { background: var(--pink); transform: translateY(-2px); }
+		</style>
+	</head>
+	<body>
+		<main>
+			<svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+				<rect width="64" height="64" rx="12" fill="#1a1416" />
+				<path d="M18 14 v36" stroke="#ECE6E5" stroke-width="7" stroke-linecap="square" />
+				<path d="M46 14 L26 32 L46 50" stroke="#C0707F" stroke-width="7" stroke-linecap="square" fill="none" />
+			</svg>
+			<div class="code">404</div>
+			<h1>This page took a wrong turn.</h1>
+			<p>The link may be broken or the page may have moved. Let's get you back to something that works.</p>
+			<a class="home" href="https://flood0527.github.io/kontora-designs/">Back to Kontora <span aria-hidden="true">→</span></a>
+		</main>
+	</body>
+</html>

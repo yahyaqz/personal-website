@@ -1,0 +1,1027 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Kontora Designs — Premium Web Design in Calgary</title>
+		<meta
+			name="description"
+			content="Kontora Designs is a Calgary web design studio building premium websites and digital identities for businesses that want a stronger, more professional online presence."
+		/>
+		<!-- Point these three at wherever the site actually lives. A canonical
+		     aimed at a domain you don't own yet would keep the live site out of
+		     search results. Change to https://kontoradesigns.com/ once that
+		     domain is pointed here. -->
+		<link rel="canonical" href="https://flood0527.github.io/kontora-designs/" />
+		<meta name="theme-color" content="#0B0A09" />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Kontora Designs" />
+		<meta property="og:title" content="Kontora Designs — Premium Web Design in Calgary" />
+		<meta
+			property="og:description"
+			content="Websites and digital identities for businesses that want to look as professional online as they are in real life."
+		/>
+		<meta property="og:url" content="https://flood0527.github.io/kontora-designs/" />
+		<meta property="og:locale" content="en_CA" />
+		<meta property="og:image" content="https://flood0527.github.io/kontora-designs/og-image.svg" />
+		<meta property="og:image:type" content="image/svg+xml" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Kontora Designs — your website can do more." />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Kontora Designs — Premium Web Design in Calgary" />
+		<meta
+			name="twitter:description"
+			content="Websites and digital identities for businesses that want to look as professional online as they are in real life."
+		/>
+		<meta name="twitter:image" content="https://flood0527.github.io/kontora-designs/og-image.svg" />
+		<meta name="robots" content="index, follow" />
+
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="/favicon.svg" />
+		<link rel="manifest" href="/site.webmanifest" />
+
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "ProfessionalService",
+				"name": "Kontora Designs",
+				"description": "Premium web design and digital identity studio in Calgary, Alberta.",
+				"url": "https://flood0527.github.io/kontora-designs/",
+				"telephone": "+1-825-559-2797",
+				"email": "hello@kontoradesigns.com",
+				"priceRange": "$$$",
+				"address": {
+					"@type": "PostalAddress",
+					"addressLocality": "Calgary",
+					"addressRegion": "AB",
+					"addressCountry": "CA"
+				},
+				"areaServed": { "@type": "AdministrativeArea", "name": "Alberta, Canada" }
+			}
+		</script>
+
+		<!-- Hide animated content until JS can set its start state — but only when
+		     motion is actually wanted, so reduced-motion users never see a blank
+		     page, and main.js clears the class (plus a 3s failsafe) regardless. -->
+		<script>
+			if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				document.documentElement.classList.add('anim');
+			}
+		</script>
+		<style>
+			.anim [data-split],
+			.anim [data-reveal],
+			.anim [data-hero],
+			.anim .project__frame,
+			.anim .project__phone,
+			.anim .concept:not(.is-hidden) {
+				opacity: 0;
+			}
+		</style>
+
+		<script type="module" src="/src/main.js"></script>
+	</head>
+
+	<body>
+		<a class="skip-link" href="#main">Skip to content</a>
+
+		<!-- Instagram's mark is a gradient, so it is defined once here and
+		     referenced by every Instagram icon on the page. -->
+		<svg width="0" height="0" aria-hidden="true" focusable="false" style="position: absolute">
+			<defs>
+				<linearGradient id="ig-gradient" x1="0" y1="1" x2="1" y2="0">
+					<stop offset="0%" stop-color="#FFC85C" />
+					<stop offset="28%" stop-color="#F8555F" />
+					<stop offset="62%" stop-color="#D62A85" />
+					<stop offset="100%" stop-color="#7A38C6" />
+				</linearGradient>
+			</defs>
+		</svg>
+
+		<canvas class="trail" data-trail aria-hidden="true"></canvas>
+
+		<!-- Custom cursor (desktop / fine-pointer only, injected state via JS) -->
+		<div class="cursor" aria-hidden="true" data-cursor-root>
+			<div class="cursor__dot" data-cursor-dot></div>
+			<div class="cursor__ring" data-cursor-ring>
+				<span class="cursor__label" data-cursor-label></span>
+			</div>
+		</div>
+
+		<div class="scroll-progress" aria-hidden="true"><span data-scroll-progress></span></div>
+
+		<header class="nav" data-nav>
+			<div class="nav__inner">
+				<a class="nav__brand" href="#top" data-cursor="hide">
+					<span class="nav__brand-main">KONTORA</span>
+					<span class="nav__brand-sub">DESIGNS</span>
+				</a>
+
+				<!-- Each link carries an empty squiggle slot; squiggle.js injects the
+				     hand-drawn SVG and draws it in when the link becomes current. -->
+				<nav class="nav__links" aria-label="Primary">
+					<a href="#work" data-nav-link>
+						<span class="nav__slide"><span>Work</span><span aria-hidden="true">Work</span></span>
+						<span class="nav__squiggle" aria-hidden="true"></span>
+					</a>
+					<a href="#services" data-nav-link>
+						<span class="nav__slide"><span>Services</span><span aria-hidden="true">Services</span></span>
+						<span class="nav__squiggle" aria-hidden="true"></span>
+					</a>
+					<a href="#process" data-nav-link>
+						<span class="nav__slide"><span>Process</span><span aria-hidden="true">Process</span></span>
+						<span class="nav__squiggle" aria-hidden="true"></span>
+					</a>
+					<a href="#pricing" data-nav-link>
+						<span class="nav__slide"><span>Pricing</span><span aria-hidden="true">Pricing</span></span>
+						<span class="nav__squiggle" aria-hidden="true"></span>
+					</a>
+					<a href="#contact" data-nav-link>
+						<span class="nav__slide"><span>Contact</span><span aria-hidden="true">Contact</span></span>
+						<span class="nav__squiggle" aria-hidden="true"></span>
+					</a>
+				</nav>
+
+				<a class="btn btn--pill nav__cta" href="#contact" data-project-open data-magnetic>
+					<span class="btn__label">Start Project <span class="btn__arrow" aria-hidden="true">↗</span></span>
+				</a>
+
+				<button class="nav__burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+					<span></span><span></span>
+				</button>
+			</div>
+		</header>
+
+		<div class="menu" id="mobile-menu" data-menu hidden>
+			<div class="menu__panel">
+				<nav class="menu__links" aria-label="Mobile">
+					<a href="#work"><span class="menu__idx">01</span><span class="menu__word">Work</span></a>
+					<a href="#services"><span class="menu__idx">02</span><span class="menu__word">Services</span></a>
+					<a href="#process"><span class="menu__idx">03</span><span class="menu__word">Process</span></a>
+					<a href="#pricing"><span class="menu__idx">04</span><span class="menu__word">Pricing</span></a>
+					<a href="#contact"><span class="menu__idx">05</span><span class="menu__word">Contact</span></a>
+				</nav>
+				<div class="menu__foot">
+					<a href="tel:+18255592797">825-559-2797</a>
+					<a href="mailto:hello@kontoradesigns.com">hello@kontoradesigns.com</a>
+					<span>Calgary, Alberta</span>
+				</div>
+			</div>
+		</div>
+
+		<main id="main">
+			<!-- ===================== OPENING (pinned scene) =====================
+			     Two stages share one pinned viewport. Scroll position scrubs the
+			     hero out and the statement in — see src/modules/opening.js. -->
+			<section class="opening" id="top" data-opening>
+				<div class="opening__viewport" data-opening-viewport>
+					<div class="opening__wash" data-opening-wash aria-hidden="true"></div>
+
+					<!-- Stage 1 — the hero -->
+					<div class="opening__stage opening__stage--hero" data-stage="hero">
+						<div class="opening__inner">
+							<p class="eyebrow hero__eyebrow" data-hero="eyebrow">
+								<span class="eyebrow__rule" aria-hidden="true"></span>Enough with average.
+							</p>
+
+							<h1 class="hero__title" data-hero="title">
+								<span class="line"><span class="line__i">Your website</span></span>
+								<span class="line"><span class="line__i">can do <em>more.</em></span></span>
+							</h1>
+
+							<div class="hero__bottom">
+								<p class="hero__lede" data-hero="lede">
+									We create digital experiences for businesses that want to look as professional
+									online as they are in real life.
+								</p>
+								<div class="hero__actions" data-hero="actions">
+									<a class="btn btn--solid" href="#contact" data-project-open data-magnetic>
+										<span class="btn__label">Start a Project <span class="btn__arrow" aria-hidden="true">↗</span></span>
+									</a>
+									<a class="hero__scroll" href="#work" data-cursor="hide">
+										<span>scroll to explore</span>
+										<span class="hero__scroll-arrow" aria-hidden="true">↓</span>
+									</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="hero__meta" data-hero="meta" aria-hidden="true">
+							<span>Calgary, AB</span>
+							<span>Web Design &amp; Development</span>
+							<span>Est. 2026</span>
+						</div>
+					</div>
+
+					<!-- Stage 2 — the statement the hero becomes -->
+					<div class="opening__stage opening__stage--statement" data-stage="statement">
+						<div class="opening__inner">
+							<h2 class="statement" data-statement>
+								<span class="statement__line"><span class="statement__i">See it</span></span>
+								<span class="statement__line"><span class="statement__i">for
+									<span class="statement__mark">yourself.<svg class="statement__stroke" viewBox="0 0 300 26" preserveAspectRatio="none" aria-hidden="true" data-statement-stroke></svg></span>
+								</span></span>
+							</h2>
+							<p class="statement__lede" data-statement-lede>
+								Great websites don't need explaining.<br />The work speaks for itself.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ========================= SELECTED PROJECTS ========================= -->
+			<section class="work" id="work">
+				<div class="shell section-head">
+					<p class="eyebrow" data-reveal><span class="eyebrow__rule" aria-hidden="true"></span>Selected projects</p>
+					<span class="section-head__count" data-reveal>03 / Featured</span>
+				</div>
+
+				<!-- Oversized editorial counter that rolls as each project passes.
+				     Digit columns are built by initOdometer(). -->
+				<div class="work__odometer" aria-hidden="true" data-odometer>
+					<div class="odo">
+						<span class="odo__slot" data-odo-slot></span>
+						<span class="odo__slot" data-odo-slot></span>
+					</div>
+				</div>
+
+				<div class="projects" data-projects>
+					<!-- Alternating two-column rows: a wide, browser-framed live preview of
+					     the real demo (public/demos/<slug>) beside an editorial write-up.
+					     embeds.js scales the iframe; the preview grows into place on scroll
+					     (see initProjectFrames in reveals.js). The card links to the demo. -->
+					<article class="project" data-project data-accent="#C0836F">
+						<a class="project__link" href="demos/olea/index.html" target="_blank" rel="noopener" data-cursor="view" aria-label="Olea — open the live demo in a new tab">
+							<div class="project__media">
+								<span class="project__glow" aria-hidden="true"></span>
+								<div class="project__frame">
+									<div class="project__chrome" aria-hidden="true"><span></span><span></span><span></span><i class="project__url"></i></div>
+									<div class="project__screen"><iframe class="project__embed" data-embed data-embed-w="1600" src="demos/olea/index.html?embed=1" title="Olea — live desktop preview" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe></div>
+								</div>
+							</div>
+
+							<div class="project__text">
+								<span class="project__index">01 — Restaurant &amp; Café</span>
+								<h3 class="project__name" data-split="words">Olea</h3>
+								<p class="project__desc">A coastal-Mediterranean restaurant that wanted its site to feel as warm and considered as the room itself. We built an editorial, image-led experience — a living seasonal menu, sun-warmed art direction, and one-tap reservations.</p>
+								<span class="project__view">View Project <span aria-hidden="true">↗</span></span>
+							</div>
+						</a>
+					</article>
+
+					<article class="project" data-project data-accent="#8E5F72">
+						<a class="project__link" href="demos/pulse/index.html" target="_blank" rel="noopener" data-cursor="view" aria-label="Pulse — open the live demo in a new tab">
+							<div class="project__media">
+								<span class="project__glow" aria-hidden="true"></span>
+								<div class="project__frame">
+									<div class="project__chrome" aria-hidden="true"><span></span><span></span><span></span><i class="project__url"></i></div>
+									<div class="project__screen"><iframe class="project__embed" data-embed data-embed-w="1600" src="demos/pulse/index.html?embed=1" title="Pulse — live desktop preview" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe></div>
+								</div>
+							</div>
+
+							<div class="project__text">
+								<span class="project__index">02 — Fitness / Strength Studio</span>
+								<h3 class="project__name" data-split="words">Pulse</h3>
+								<p class="project__desc">A boutique strength studio that needed the web to hit as hard as its coaching. We designed a bold, high-contrast site with a live class schedule and friction-free membership sign-up that turns first-time visitors into first sessions.</p>
+								<span class="project__view">View Project <span aria-hidden="true">↗</span></span>
+							</div>
+						</a>
+					</article>
+
+					<article class="project" data-project data-accent="#B5566B">
+						<a class="project__link" href="demos/northcrest/index.html" target="_blank" rel="noopener" data-cursor="view" aria-label="Northcrest — open the live demo in a new tab">
+							<div class="project__media">
+								<span class="project__glow" aria-hidden="true"></span>
+								<div class="project__frame">
+									<div class="project__chrome" aria-hidden="true"><span></span><span></span><span></span><i class="project__url"></i></div>
+									<div class="project__screen"><iframe class="project__embed" data-embed data-embed-w="1600" src="demos/northcrest/index.html?embed=1" title="Northcrest — live desktop preview" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe></div>
+								</div>
+							</div>
+
+							<div class="project__text">
+								<span class="project__index">03 — Private Wealth / Finance</span>
+								<h3 class="project__name" data-split="words">Northcrest</h3>
+								<p class="project__desc">A private wealth firm where trust is the whole product. We crafted a restrained, deep-navy site with quiet motion and a self-drawing performance chart — credibility you feel before you read a word.</p>
+								<span class="project__view">View Project <span aria-hidden="true">↗</span></span>
+							</div>
+						</a>
+					</article>
+				</div>
+			</section>
+
+			<!-- ================== DEVICE PREVIEW (responsive morph) ================== -->
+			<section class="devices" id="responsive">
+				<div class="shell section-head">
+					<div>
+						<p class="eyebrow" data-reveal><span class="eyebrow__rule" aria-hidden="true"></span>Responsive by default</p>
+						<h2 class="display display--md" data-split="lines">Every screen. No excuses.</h2>
+					</div>
+					<div class="devices__controls" role="tablist" aria-label="Preview device" data-devices-controls>
+						<button type="button" role="tab" class="devices__btn is-active" data-device="desktop" aria-selected="true">Desktop</button>
+						<button type="button" role="tab" class="devices__btn" data-device="tablet" aria-selected="false">Tablet</button>
+						<button type="button" role="tab" class="devices__btn" data-device="mobile" aria-selected="false">Mobile</button>
+					</div>
+				</div>
+
+				<div class="shell">
+					<div class="devices__stage" data-devices>
+						<div class="devices__shell" data-devices-shell>
+							<div class="devices__chrome" data-devices-chrome aria-hidden="true">
+								<span></span><span></span><span></span>
+								<div class="devices__url"></div>
+							</div>
+							<div class="devices__screen">
+								<!-- A live demo that actually reflows as the shell resizes — the
+								     real proof of "responsive by default". -->
+								<iframe class="devices__live" data-devices-frame src="demos/olea/index.html?embed=1" title="Olea — live responsive preview" loading="lazy" tabindex="-1"></iframe>
+							</div>
+						</div>
+						<p class="devices__caption" data-devices-caption>Olea — 1440px</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ================= OUTDATED → OUTSTANDING (drag reveal) ================= -->
+			<!-- data-invert: this chapter scrubs from ink to paper and back as you
+			     scroll through it. See initInversion() in showcase.js. -->
+			<section class="transform" id="transform" data-invert>
+				<div class="shell section-head section-head--stack">
+					<p class="eyebrow" data-reveal><span class="eyebrow__rule" aria-hidden="true"></span>Website redesign</p>
+					<h2 class="display display--lg" data-split="lines">Outdated → Outstanding</h2>
+					<p class="transform__lede" data-reveal>
+						Drag the handle. Left is what most Calgary businesses are still running; right is what
+						we replace it with.
+					</p>
+				</div>
+
+				<div class="shell">
+					<div class="ba" data-ba>
+						<div class="ba__browser">
+							<div class="ba__chrome" aria-hidden="true">
+								<span></span><span></span><span></span>
+								<div class="ba__url"></div>
+							</div>
+
+							<div class="ba__stage" data-ba-stage>
+								<img class="ba__layer" src="/mockups/redesign-after.svg" alt="The same business website after a Kontora Designs redesign" width="1440" height="900" loading="lazy" decoding="async" />
+
+								<div class="ba__clip" data-ba-clip>
+									<img class="ba__layer" src="/mockups/redesign-before.svg" alt="A dated business website before redesign" width="1440" height="900" loading="lazy" decoding="async" />
+								</div>
+
+								<span class="ba__tag ba__tag--before" data-ba-tag-before>Before</span>
+								<span class="ba__tag ba__tag--after" data-ba-tag-after>After</span>
+
+								<div class="ba__handle" data-ba-handle>
+									<span class="ba__line" aria-hidden="true"></span>
+									<button
+										type="button"
+										class="ba__grip"
+										role="slider"
+										aria-label="Reveal before or after"
+										aria-valuemin="0"
+										aria-valuemax="100"
+										aria-valuenow="50"
+										aria-valuetext="50% after"
+										data-ba-grip
+									>
+										<span aria-hidden="true">‹</span><span aria-hidden="true">›</span>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ===================== SPOTLIGHT (cursor lens) ===================== -->
+			<section class="spot" id="spotlight" data-spot>
+				<div class="shell section-head section-head--stack">
+					<p class="eyebrow" data-reveal><span class="eyebrow__rule" aria-hidden="true"></span>Under the surface</p>
+					<h2 class="display display--md" data-split="lines">Move your cursor. Look closer.</h2>
+				</div>
+
+				<div class="shell">
+					<div class="spot__stage" data-spot-stage>
+						<img class="spot__base" src="/mockups/spot-wireframe.svg" alt="Wireframe of a website layout" width="1440" height="810" loading="lazy" decoding="async" />
+
+						<div class="spot__lens" data-spot-lens aria-hidden="true">
+							<img class="spot__reveal" src="/mockups/spot-final.svg" alt="" width="1440" height="810" loading="lazy" decoding="async" />
+						</div>
+						<div class="spot__ring" data-spot-ring aria-hidden="true"></div>
+
+						<p class="spot__hint" data-spot-hint>Wireframe → finished design</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ======================= EXPERIMENTS & CONCEPTS ======================= -->
+			<section class="concepts">
+				<div class="shell section-head">
+					<h2 class="display display--md" data-split="lines">Experiments &amp; concepts</h2>
+					<p class="section-head__note" data-reveal>
+						Self-initiated studies where we push type, motion and layout further than a client brief
+						usually allows.
+					</p>
+				</div>
+
+				<div class="shell">
+					<div class="concept-grid" data-concepts>
+						<figure class="concept" data-cursor="peek">
+							<div class="concept__img"><img src="/mockups/concept-01.svg" alt="Concept study: Meridian Field, an editorial layout in ink and clay" width="900" height="640" loading="lazy" decoding="async" /></div>
+							<figcaption><span>Meridian Field</span><span>Editorial / Type study</span></figcaption>
+						</figure>
+						<figure class="concept" data-cursor="peek">
+							<div class="concept__img"><img src="/mockups/concept-02.svg" alt="Concept study: Sable House, a minimal hospitality layout" width="900" height="640" loading="lazy" decoding="async" /></div>
+							<figcaption><span>Sable House</span><span>Hospitality / Identity</span></figcaption>
+						</figure>
+						<figure class="concept" data-cursor="peek">
+							<div class="concept__img"><img src="/mockups/concept-03.svg" alt="Concept study: Northbank, a structured financial interface" width="900" height="640" loading="lazy" decoding="async" /></div>
+							<figcaption><span>Northbank</span><span>Finance / Interface</span></figcaption>
+						</figure>
+
+						<figure class="concept is-hidden" data-concept-extra data-cursor="peek">
+							<div class="concept__img"><img src="/mockups/concept-04.svg" alt="Concept study: Foothills Supply, an industrial catalogue layout" width="900" height="640" loading="lazy" decoding="async" /></div>
+							<figcaption><span>Foothills Supply</span><span>Industrial / Catalogue</span></figcaption>
+						</figure>
+						<figure class="concept is-hidden" data-concept-extra data-cursor="peek">
+							<div class="concept__img"><img src="/mockups/concept-05.svg" alt="Concept study: Verre Atelier, a gallery-style portfolio" width="900" height="640" loading="lazy" decoding="async" /></div>
+							<figcaption><span>Verre Atelier</span><span>Gallery / Portfolio</span></figcaption>
+						</figure>
+						<figure class="concept is-hidden" data-concept-extra data-cursor="peek">
+							<div class="concept__img"><img src="/mockups/concept-06.svg" alt="Concept study: Bow &amp; Bloom, a soft retail storefront" width="900" height="640" loading="lazy" decoding="async" /></div>
+							<figcaption><span>Bow &amp; Bloom</span><span>Retail / Storefront</span></figcaption>
+						</figure>
+					</div>
+
+					<div class="concepts__more">
+						<button class="btn btn--ghost" type="button" data-show-more aria-expanded="false" aria-controls="concept-grid">
+							<span class="btn__label" data-show-more-label>Show more</span>
+							<span class="btn__arrow btn__arrow--down" aria-hidden="true">↓</span>
+						</button>
+					</div>
+				</div>
+			</section>
+
+			<!-- An About / studio section will live here later. Deliberately absent
+			     for now — the brand is presented as Kontora Designs, not a person. -->
+
+			<!-- ============================= SERVICES ============================= -->
+			<section class="services" id="services">
+				<div class="shell section-head section-head--stack">
+					<p class="eyebrow" data-reveal><span class="eyebrow__rule" aria-hidden="true"></span>Services</p>
+					<h2 class="display display--lg" data-split="lines">What we can build for your business.</h2>
+				</div>
+
+				<div class="shell">
+					<ul class="svc" data-services>
+						<li class="svc__row" data-svc>
+							<span class="svc__num">01</span>
+							<h3 class="svc__title">Website Redesign</h3>
+							<p class="svc__desc">Transform an outdated website into a modern experience.</p>
+							<span class="svc__mark" aria-hidden="true">↗</span>
+						</li>
+						<li class="svc__row" data-svc>
+							<span class="svc__num">02</span>
+							<h3 class="svc__title">New Websites</h3>
+							<p class="svc__desc">Build an entirely new online presence from scratch.</p>
+							<span class="svc__mark" aria-hidden="true">↗</span>
+						</li>
+						<li class="svc__row" data-svc>
+							<span class="svc__num">03</span>
+							<h3 class="svc__title">Branding</h3>
+							<p class="svc__desc">Logos, typography, colors and visual identity.</p>
+							<span class="svc__mark" aria-hidden="true">↗</span>
+						</li>
+						<li class="svc__row" data-svc>
+							<span class="svc__num">04</span>
+							<h3 class="svc__title">Rapid Development</h3>
+							<p class="svc__desc">Professional websites without months of waiting.</p>
+							<span class="svc__mark" aria-hidden="true">↗</span>
+						</li>
+						<li class="svc__row" data-svc>
+							<span class="svc__num">05</span>
+							<h3 class="svc__title">Maintenance</h3>
+							<p class="svc__desc">Updates, improvements and ongoing support.</p>
+							<span class="svc__mark" aria-hidden="true">↗</span>
+						</li>
+						<li class="svc__row" data-svc>
+							<span class="svc__num">06</span>
+							<h3 class="svc__title">Free Consultation</h3>
+							<p class="svc__desc">Talk about your business and discover what can be improved.</p>
+							<span class="svc__mark" aria-hidden="true">↗</span>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<!-- ============================== PROCESS ============================== -->
+			<section class="process" id="process" data-process>
+				<div class="shell process__grid">
+					<div class="process__sticky">
+						<p class="eyebrow"><span class="eyebrow__rule" aria-hidden="true"></span>How we work</p>
+						<div class="process__display" aria-hidden="true">
+							<span class="process__big" data-process-num>01</span>
+						</div>
+						<h2 class="process__label" data-process-label>Consultation</h2>
+						<div class="process__bar"><span data-process-bar></span></div>
+					</div>
+
+					<ol class="process__steps">
+						<li class="process__step" data-step data-num="01" data-label="Consultation">
+							<span class="process__step-num">01</span>
+							<h3>Consultation</h3>
+							<p>A free conversation about your business, your customers and what your current site is costing you.</p>
+						</li>
+						<li class="process__step" data-step data-num="02" data-label="Direction">
+							<span class="process__step-num">02</span>
+							<h3>Direction</h3>
+							<p>We agree on tone, references and structure before a single pixel is drawn, so nothing is a surprise later.</p>
+						</li>
+						<li class="process__step" data-step data-num="03" data-label="Design">
+							<span class="process__step-num">03</span>
+							<h3>Design</h3>
+							<p>Layouts, typography and motion are designed together — the movement is part of the design, not decoration.</p>
+						</li>
+						<li class="process__step" data-step data-num="04" data-label="Development">
+							<span class="process__step-num">04</span>
+							<h3>Development</h3>
+							<p>Hand-built, fast and responsive. No bloated page builders, no templates fighting your brand.</p>
+						</li>
+						<li class="process__step" data-step data-num="05" data-label="Launch">
+							<span class="process__step-num">05</span>
+							<h3>Launch</h3>
+							<p>Testing across devices, performance checks, analytics and search basics — then we go live together.</p>
+						</li>
+						<li class="process__step" data-step data-num="06" data-label="Support">
+							<span class="process__step-num">06</span>
+							<h3>Support</h3>
+							<p>Updates, improvements and honest advice as your business changes. You are never left on your own.</p>
+						</li>
+					</ol>
+				</div>
+			</section>
+
+			<!-- ============================== PRICING ============================== -->
+			<section class="pricing" id="pricing" data-theme="light">
+				<div class="shell section-head section-head--stack">
+					<p class="eyebrow" data-reveal><span class="eyebrow__rule" aria-hidden="true"></span>Estimate</p>
+					<h2 class="display display--lg" data-split="lines">What does your website cost?</h2>
+					<p class="pricing__lede" data-reveal>
+						Every project is different. Build a quick estimate below and we'll create an exact quote
+						after your consultation.
+					</p>
+				</div>
+
+				<div class="shell calc" data-calc>
+					<div class="calc__controls">
+						<div class="calc__block">
+							<div class="calc__block-head">
+								<h3>Foundation</h3>
+								<span class="calc__block-price" data-base-price>$2,400</span>
+							</div>
+							<p class="calc__block-note">
+								Included in every project: custom design, responsive build, motion, basic SEO and launch.
+							</p>
+						</div>
+
+						<div class="calc__block calc__block--pages">
+							<div class="calc__block-head">
+								<h3>How many pages do you need?</h3>
+								<div class="stepper">
+									<button type="button" class="stepper__btn" data-pages-dec aria-label="Fewer pages">–</button>
+									<span class="stepper__value" data-pages-value>5</span>
+									<button type="button" class="stepper__btn" data-pages-inc aria-label="More pages">+</button>
+								</div>
+							</div>
+
+							<p class="calc__readout" aria-live="polite">
+								<span class="calc__readout-count" data-pages-readout>5 Pages</span>
+								<span class="calc__readout-sep" aria-hidden="true">—</span>
+								<span class="calc__readout-price">Estimated Price:
+									<strong data-readout-price>$4,000 CAD</strong>
+								</span>
+							</p>
+
+							<div class="calc__slider">
+								<div class="calc__slider-track" aria-hidden="true"><span data-pages-fill></span></div>
+								<input type="range" min="1" max="20" value="5" step="1" data-pages-range aria-label="Number of pages" />
+							</div>
+							<div class="calc__slider-scale" aria-hidden="true"><span>1</span><span>10</span><span>20+</span></div>
+						</div>
+
+						<div class="calc__block">
+							<div class="calc__block-head"><h3>Add-ons</h3></div>
+							<!-- Add-on prices live in PRICING.addons (src/modules/pricing.js).
+							     The "+$xxx" label below is filled in from there on load, so
+							     there is only ever one number to change. -->
+							<ul class="opts" data-opts>
+								<li><button type="button" class="opt" data-opt="logo" aria-pressed="false">
+									<span class="opt__check" aria-hidden="true"></span>
+									<span class="opt__name">Logo Design</span>
+									<span class="opt__desc">An original mark built for screens and signage alike.</span>
+									<span class="opt__price" data-opt-price></span>
+								</button></li>
+								<li><button type="button" class="opt" data-opt="brand" aria-pressed="false">
+									<span class="opt__check" aria-hidden="true"></span>
+									<span class="opt__name">Branding</span>
+									<span class="opt__desc">Type, colour, tone and a guideline document.</span>
+									<span class="opt__price" data-opt-price></span>
+								</button></li>
+								<li><button type="button" class="opt" data-opt="care" aria-pressed="false">
+									<span class="opt__check" aria-hidden="true"></span>
+									<span class="opt__name">Website Maintenance</span>
+									<span class="opt__desc">A year of updates, backups and small changes.</span>
+									<span class="opt__price" data-opt-price></span>
+								</button></li>
+								<li><button type="button" class="opt" data-opt="motion" aria-pressed="false">
+									<span class="opt__check" aria-hidden="true"></span>
+									<span class="opt__name">Advanced Animations</span>
+									<span class="opt__desc">Scroll choreography and interaction design like this page.</span>
+									<span class="opt__price" data-opt-price></span>
+								</button></li>
+								<li><button type="button" class="opt" data-opt="lang" aria-pressed="false">
+									<span class="opt__check" aria-hidden="true"></span>
+									<span class="opt__name">Additional Languages</span>
+									<span class="opt__desc">A second language with its own indexable pages.</span>
+									<span class="opt__price" data-opt-price></span>
+								</button></li>
+								<li><button type="button" class="opt" data-opt="cms" aria-pressed="false">
+									<span class="opt__check" aria-hidden="true"></span>
+									<span class="opt__name">CMS / Editable Website</span>
+									<span class="opt__desc">Edit your own text and images, no code required.</span>
+									<span class="opt__price" data-opt-price></span>
+								</button></li>
+								<li><button type="button" class="opt" data-opt="forms" aria-pressed="false">
+									<span class="opt__check" aria-hidden="true"></span>
+									<span class="opt__name">Extra Forms</span>
+									<span class="opt__desc">Booking, quote or intake forms beyond the standard one.</span>
+									<span class="opt__price" data-opt-price></span>
+								</button></li>
+							</ul>
+						</div>
+					</div>
+
+					<aside class="calc__summary">
+						<!-- Live package visualisation: pages become nodes, add-ons become
+						     badges. Rendered by initBuilder() in pricing.js. -->
+						<figure class="builder" data-builder>
+							<figcaption class="builder__label">Your package</figcaption>
+							<div class="builder__canvas">
+								<div class="builder__home" data-builder-home>
+									<span class="builder__home-bar" aria-hidden="true"></span>
+									<span class="builder__home-bar" aria-hidden="true"></span>
+									<span class="builder__tag">Home</span>
+								</div>
+								<div class="builder__links" aria-hidden="true"><svg data-builder-links preserveAspectRatio="none"></svg></div>
+								<ul class="builder__pages" data-builder-pages></ul>
+							</div>
+							<ul class="builder__badges" data-builder-badges></ul>
+						</figure>
+
+						<div class="calc__summary-inner">
+							<p class="calc__summary-label">Estimated from</p>
+							<p class="calc__total">
+								<span class="calc__currency">$</span><span data-total>4,000</span><span class="calc__cad">CAD</span>
+							</p>
+							<!-- Pre-hydration values; the calculator re-renders this list on load. -->
+							<ul class="calc__lines" data-calc-lines>
+								<li><span>Foundation</span><span>$2,400</span></li>
+								<li><span>Additional pages <em>× 4</em></span><span>$1,600</span></li>
+							</ul>
+							<p class="calc__disclaimer">
+								This is only an estimated price. Final pricing will be confirmed after your free
+								consultation.
+							</p>
+							<a class="btn btn--solid btn--block" href="#contact" data-project-open data-magnetic>
+								<span class="btn__label">Get Your Exact Quote <span class="btn__arrow" aria-hidden="true">↗</span></span>
+							</a>
+						</div>
+					</aside>
+				</div>
+			</section>
+
+			<!-- ============================= FINAL CTA ============================= -->
+			<section class="cta">
+				<div class="cta__inner">
+					<h2 class="cta__title" data-split="lines">Ready for something better?</h2>
+					<p class="cta__lede" data-reveal>Tell us about your business and what you want to achieve.</p>
+					<a class="btn btn--solid btn--lg" href="#contact" data-project-open data-magnetic>
+						<span class="btn__label">Start a Project <span class="btn__arrow" aria-hidden="true">↗</span></span>
+					</a>
+					<p class="cta__note" data-reveal>Free consultation · No obligation · Calgary, Alberta</p>
+				</div>
+			</section>
+
+			<!-- ============================== CONTACT ============================== -->
+			<section class="contact" id="contact">
+				<div class="shell contact__grid">
+					<div class="contact__aside">
+						<p class="eyebrow" data-reveal><span class="eyebrow__rule" aria-hidden="true"></span>Contact</p>
+						<h2 class="contact__title" data-split="lines">Let's talk about your project.</h2>
+						<ul class="contact__details">
+							<li><span>Phone</span><a href="tel:+18255592797" data-cursor="link">825-559-2797</a></li>
+							<li><span>Email</span><a href="mailto:hello@kontoradesigns.com" data-cursor="link">hello@kontoradesigns.com</a></li>
+							<li><span>Studio</span><span>Calgary, Alberta</span></li>
+							<li>
+								<span>Social</span>
+								<!-- SOCIAL LINKS — replace the three href values with your real
+								     profile URLs. The same block is repeated in the footer. -->
+								<ul class="social">
+									<li>
+										<a class="social__link social__link--ig" href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Kontora Designs on Instagram" data-cursor="link">
+											<svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" focusable="false">
+												<rect x="2.2" y="2.2" width="19.6" height="19.6" rx="5.4" fill="none" stroke="currentColor" stroke-width="1.7" />
+												<circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.7" />
+												<circle cx="17.7" cy="6.4" r="1.35" fill="currentColor" stroke="none" />
+											</svg>
+										</a>
+									</li>
+									<li>
+										<a class="social__link social__link--fb" href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Kontora Designs on Facebook" data-cursor="link">
+											<svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" focusable="false">
+												<path fill="currentColor" d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94Z" />
+											</svg>
+										</a>
+									</li>
+									<li>
+										<a class="social__link social__link--li" href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="Kontora Designs on LinkedIn" data-cursor="link">
+											<svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true" focusable="false">
+												<path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.55V9h3.57ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z" />
+											</svg>
+										</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+
+					<div class="contact__cta">
+						<span class="contact__cta-eyebrow">Free consultation</span>
+						<p class="contact__cta-text">Tell us what you're building. We reply within one business day with clear next steps — no pressure, no obligation.</p>
+						<button type="button" class="btn btn--solid btn--lg" data-project-open data-magnetic>
+							<span class="btn__label">Start a project <span class="btn__arrow" aria-hidden="true">↗</span></span>
+						</button>
+						<a class="contact__cta-alt" href="mailto:hello@kontoradesigns.com" data-cursor="link">Prefer email? hello@kontoradesigns.com</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- ================================ FAQ ================================ -->
+			<section class="faq">
+				<div class="shell section-head">
+					<h2 class="display display--md" data-split="lines">Questions, answered.</h2>
+					<span class="section-head__count" data-reveal>FAQ</span>
+				</div>
+
+				<div class="shell">
+					<div class="acc" data-acc>
+						<div class="acc__item" data-acc-item>
+							<h3><button type="button" class="acc__trigger" aria-expanded="false">
+								<span>How much does a website cost?</span><span class="acc__icon" aria-hidden="true"></span>
+							</button></h3>
+							<div class="acc__panel" data-acc-panel><div class="acc__body">
+								<p>Most projects land between $3,000 and $9,000 CAD depending on page count, content
+								and how much branding is involved. The estimator above will get you close — the exact
+								number comes after a free consultation, and it does not move afterwards.</p>
+							</div></div>
+						</div>
+
+						<div class="acc__item" data-acc-item>
+							<h3><button type="button" class="acc__trigger" aria-expanded="false">
+								<span>How long does a website take?</span><span class="acc__icon" aria-hidden="true"></span>
+							</button></h3>
+							<div class="acc__panel" data-acc-panel><div class="acc__body">
+								<p>A focused marketing site is usually two to four weeks from kickoff. Larger builds
+								with branding or a content system run four to eight. The honest bottleneck is almost
+								always content, so we start collecting it on day one.</p>
+							</div></div>
+						</div>
+
+						<div class="acc__item" data-acc-item>
+							<h3><button type="button" class="acc__trigger" aria-expanded="false">
+								<span>Can you redesign my existing website?</span><span class="acc__icon" aria-hidden="true"></span>
+							</button></h3>
+							<div class="acc__panel" data-acc-panel><div class="acc__body">
+								<p>Yes — it's the majority of what we do. We keep what already works for your customers,
+								rebuild the rest, and make sure your existing search rankings survive the move.</p>
+							</div></div>
+						</div>
+
+						<div class="acc__item" data-acc-item>
+							<h3><button type="button" class="acc__trigger" aria-expanded="false">
+								<span>Can you build my website from scratch?</span><span class="acc__icon" aria-hidden="true"></span>
+							</button></h3>
+							<div class="acc__panel" data-acc-panel><div class="acc__body">
+								<p>Absolutely. Starting from nothing is often easier than untangling a template. We handle
+								structure, copy direction, design and development, and hand you a finished site.</p>
+							</div></div>
+						</div>
+
+						<div class="acc__item" data-acc-item>
+							<h3><button type="button" class="acc__trigger" aria-expanded="false">
+								<span>Can you create my logo?</span><span class="acc__icon" aria-hidden="true"></span>
+							</button></h3>
+							<div class="acc__panel" data-acc-panel><div class="acc__body">
+								<p>Yes. Logo design is available on its own, or as part of a full branding package with
+								type, colour and usage guidelines. You receive every file format you'll need.</p>
+							</div></div>
+						</div>
+
+						<div class="acc__item" data-acc-item>
+							<h3><button type="button" class="acc__trigger" aria-expanded="false">
+								<span>Will it work on phones and tablets?</span><span class="acc__icon" aria-hidden="true"></span>
+							</button></h3>
+							<div class="acc__panel" data-acc-panel><div class="acc__body">
+								<p>Every build is designed for small screens first, then scaled up. More than half your
+								visitors are on a phone, so that's where we start, not where we compromise.</p>
+							</div></div>
+						</div>
+
+						<div class="acc__item" data-acc-item>
+							<h3><button type="button" class="acc__trigger" aria-expanded="false">
+								<span>Do you offer maintenance after launch?</span><span class="acc__icon" aria-hidden="true"></span>
+							</button></h3>
+							<div class="acc__panel" data-acc-panel><div class="acc__body">
+								<p>Yes, as an optional plan covering updates, backups, monitoring and a set amount of
+								small changes each month. It's optional — your site is yours either way.</p>
+							</div></div>
+						</div>
+
+						<div class="acc__item" data-acc-item>
+							<h3><button type="button" class="acc__trigger" aria-expanded="false">
+								<span>Can I update my website later?</span><span class="acc__icon" aria-hidden="true"></span>
+							</button></h3>
+							<div class="acc__panel" data-acc-panel><div class="acc__body">
+								<p>If you add content management, you can edit text and images yourself from a simple
+								dashboard. If you'd rather not touch it, send us the changes and we'll handle them.</p>
+							</div></div>
+						</div>
+
+						<div class="acc__item" data-acc-item>
+							<h3><button type="button" class="acc__trigger" aria-expanded="false">
+								<span>Is the consultation free?</span><span class="acc__icon" aria-hidden="true"></span>
+							</button></h3>
+							<div class="acc__panel" data-acc-panel><div class="acc__body">
+								<p>Completely free, with no obligation. We'll look at your current site, tell you what
+								we'd change and roughly what it would cost. If we're not the right fit, we'll say so.</p>
+							</div></div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<div class="modal" data-project-modal aria-hidden="true">
+			<div class="modal__scrim" data-modal-close></div>
+			<div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" data-lenis-prevent>
+				<button type="button" class="modal__close" data-modal-close aria-label="Close">
+					<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6 L18 18 M18 6 L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+				</button>
+				<div class="modal__head">
+					<p class="eyebrow"><span class="eyebrow__rule" aria-hidden="true"></span>Start a project</p>
+					<h2 class="modal__title" id="project-modal-title">Let’s build something better.</h2>
+					<p class="modal__lede">A few details is all we need — we’ll reply within one business day.</p>
+				</div>
+						<form class="form" data-form novalidate>
+							<div class="form__row">
+								<div class="field">
+									<input id="f-name" name="name" type="text" placeholder=" " autocomplete="name" required />
+									<label for="f-name">Name <i>*</i></label>
+								</div>
+								<div class="field">
+									<input id="f-email" name="email" type="email" placeholder=" " autocomplete="email" required />
+									<label for="f-email">Email <i>*</i></label>
+								</div>
+							</div>
+
+							<div class="form__row">
+								<div class="field">
+									<input id="f-phone" name="phone" type="tel" placeholder=" " autocomplete="tel" />
+									<label for="f-phone">Phone</label>
+								</div>
+								<div class="field">
+									<input id="f-business" name="business" type="text" placeholder=" " autocomplete="organization" />
+									<label for="f-business">Business name</label>
+								</div>
+							</div>
+
+							<div class="field">
+								<input id="f-website" name="website" type="text" placeholder=" " autocomplete="url" />
+								<label for="f-website">Current website</label>
+							</div>
+
+							<div class="form__row">
+								<div class="field field--select">
+									<select id="f-service" name="service" required>
+										<option value="" selected disabled></option>
+										<option>Website redesign</option>
+										<option>New website</option>
+										<option>Branding &amp; logo</option>
+										<option>Maintenance</option>
+										<option>Not sure yet</option>
+									</select>
+									<label for="f-service">Service <i>*</i></label>
+									<span class="field__chev" aria-hidden="true">↓</span>
+								</div>
+								<div class="field field--select">
+									<select id="f-budget" name="budget">
+										<option value="" selected disabled></option>
+										<option>Under $3,000 CAD</option>
+										<option>$3,000 – $6,000 CAD</option>
+										<option>$6,000 – $12,000 CAD</option>
+										<option>$12,000+ CAD</option>
+									</select>
+									<label for="f-budget">Budget</label>
+									<span class="field__chev" aria-hidden="true">↓</span>
+								</div>
+							</div>
+
+							<div class="field">
+								<textarea id="f-message" name="message" rows="4" placeholder=" "></textarea>
+								<label for="f-message">Message</label>
+							</div>
+
+							<button class="btn btn--solid btn--block form__submit" type="submit" data-magnetic>
+								<span class="btn__label">Send Inquiry <span class="btn__arrow" aria-hidden="true">↗</span></span>
+							</button>
+
+							<p class="form__status" data-form-status role="status" aria-live="polite"></p>
+						</form>
+			</div>
+		</div>
+
+		<footer class="footer">
+			<div class="footer__top shell">
+				<div class="footer__col">
+					<span class="footer__key">Studio</span>
+					<address>
+						Calgary, Alberta<br />
+						Canada
+					</address>
+				</div>
+				<div class="footer__col">
+					<span class="footer__key">Contact</span>
+					<a href="tel:+18255592797" data-cursor="link">825-559-2797</a>
+					<a href="mailto:hello@kontoradesigns.com" data-cursor="link">hello@kontoradesigns.com</a>
+				</div>
+				<div class="footer__col">
+					<span class="footer__key">Social</span>
+					<!-- SOCIAL LINKS — replace the three href values with your real
+					     profile URLs. The same block appears in the contact section. -->
+					<ul class="social social--lg">
+						<li>
+							<a class="social__link social__link--ig" href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Kontora Designs on Instagram" data-cursor="link">
+								<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+									<rect x="2.2" y="2.2" width="19.6" height="19.6" rx="5.4" fill="none" stroke="currentColor" stroke-width="1.7" />
+									<circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.7" />
+									<circle cx="17.7" cy="6.4" r="1.35" fill="currentColor" stroke="none" />
+								</svg>
+							</a>
+						</li>
+						<li>
+							<a class="social__link social__link--fb" href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Kontora Designs on Facebook" data-cursor="link">
+								<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+									<path fill="currentColor" d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94Z" />
+								</svg>
+							</a>
+						</li>
+						<li>
+							<a class="social__link social__link--li" href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="Kontora Designs on LinkedIn" data-cursor="link">
+								<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+									<path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.55V9h3.57ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z" />
+								</svg>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="footer__col">
+					<span class="footer__key">Menu</span>
+					<a href="#work">Work</a>
+					<a href="#services">Services</a>
+					<a href="#process">Process</a>
+					<a href="#pricing">Pricing</a>
+					<a href="#contact">Contact</a>
+				</div>
+			</div>
+
+			<div class="footer__wordmark" aria-hidden="true">
+				<svg class="footer__word" data-footer-word viewBox="15 55 980 153" preserveAspectRatio="xMidYMid meet">
+					<text x="0" y="200">KONTORA</text>
+				</svg>
+				<span class="footer__sub">DESIGNS</span>
+			</div>
+
+			<div class="footer__base shell">
+				<span>© 2026 Kontora Designs</span>
+				<a class="footer__legal" href="privacy.html">Privacy</a>
+				<span>Calgary, Alberta</span>
+				<button type="button" class="footer__top-link" data-scroll-top>Back to top <span aria-hidden="true">↑</span></button>
+			</div>
+		</footer>
+	</body>
+</html>

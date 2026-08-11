@@ -1,0 +1,451 @@
+/* ==========================================================================
+   Kontora Designs — foundation: tokens, reset, typography primitives
+   ========================================================================== */
+
+:root {
+	/* --- Colour -------------------------------------------------------- */
+	/* Warm, faintly rose-shifted ink and paper. */
+	--ink: #0c0a0b;
+	--ink-2: #141112;
+	--ink-3: #1d191b;
+	--bone: #ece6e5;
+	--dim: #948a8c;
+	--paper: #f4efee;
+
+	/* Accent — a muted dusty rose, in three deliberate roles:
+	     --accent        decorative fills: rules, bars, tints
+	     --accent-hi     accent *text*; flips per theme to stay legible
+	     --accent-solid  solid fills carrying paper-coloured text (AA on --paper) */
+	--accent: #c0707f;
+	--accent-hi: #e6afb9;
+	--accent-solid: #9e4a5b;
+
+	/* The signature interaction pink. Brighter than the UI rose because it only
+	   ever appears in motion — cursor trail, nav squiggles, the opening stroke.
+	   Deliberately not used for static surfaces. */
+	--pink: #ee7e9b;
+	--pink-soft: #f7b4c4;
+
+	--fg: var(--bone);
+	--bg: var(--ink);
+	--line: rgb(236 230 229 / 14%);
+	--line-soft: rgb(236 230 229 / 8%);
+	--muted: var(--dim);
+
+	/* --- Type ---------------------------------------------------------- */
+	--font-display: 'Archivo Variable', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	--font-body: 'Inter Variable', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	--font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+
+	--fs-eyebrow: 0.6875rem;
+	--fs-body: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+	--fs-lede: clamp(1.125rem, 1rem + 0.7vw, 1.5rem);
+
+	/* Display steps — the headline sizes are the loudest element on the page */
+	--fs-hero: clamp(3rem, 11.5vw, 13.5rem);
+	--fs-display-lg: clamp(2.5rem, 8vw, 8.5rem);
+	--fs-display-md: clamp(2.1rem, 6vw, 6rem);
+	--fs-display-sm: clamp(1.65rem, 3.4vw, 3rem);
+
+	/* --- Space --------------------------------------------------------- */
+	--shell: min(92vw, 88rem);
+	--gutter: clamp(1.25rem, 4vw, 4rem);
+	--section-y: clamp(5.5rem, 12vw, 11rem);
+
+	/* --- Motion -------------------------------------------------------- */
+	--ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+	--ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+	--dur: 0.6s;
+
+	--nav-h: 4.75rem;
+	color-scheme: dark;
+}
+
+/* ---- Scroll-driven inversion -----------------------------------------
+   `--invert` is registered as a real number so the browser can interpolate it
+   natively; every colour below is derived from it with color-mix. GSAP only has
+   to scrub one value from 0 to 1 and the whole chapter changes world. */
+@property --invert {
+	syntax: '<number>';
+	inherits: true;
+	initial-value: 0;
+}
+
+[data-invert] {
+	--bg: color-mix(in oklab, var(--ink), var(--paper) calc(var(--invert) * 100%));
+	--fg: color-mix(in oklab, var(--bone), var(--ink) calc(var(--invert) * 100%));
+	--muted: color-mix(in oklab, var(--dim), #6f6568 calc(var(--invert) * 100%));
+	--line: color-mix(in oklab, rgb(236 230 229 / 14%), rgb(12 10 11 / 16%) calc(var(--invert) * 100%));
+	--line-soft: color-mix(in oklab, rgb(236 230 229 / 8%), rgb(12 10 11 / 8%) calc(var(--invert) * 100%));
+	--accent-hi: color-mix(in oklab, var(--pink), #8f3f4e calc(var(--invert) * 100%));
+}
+
+/* Inverted sections (the pricing chapter) simply re-point the same tokens. */
+[data-theme='light'] {
+	--fg: var(--ink);
+	--bg: var(--paper);
+	--line: rgb(12 10 11 / 14%);
+	--line-soft: rgb(12 10 11 / 7%);
+	--muted: #6f6568;
+	/* The light rose reads as a pastel wash on paper, so both accent roles
+	   step down to the deeper tone here. */
+	--accent: #b3697a;
+	--accent-hi: #8f3f4e;
+	color-scheme: light;
+}
+
+/* --- Reset ------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	scrollbar-color: var(--dim) var(--ink);
+	/* Native anchor jumps (reduced-motion path, where Lenis is off) land clear
+	   of the fixed bar instead of behind it. */
+	scroll-padding-block-start: var(--nav-h);
+}
+
+/* Lenis owns scrolling; keeping this out of an inline !important means the
+   reduced-motion override below can actually win. */
+html.lenis,
+html.lenis body {
+	height: auto;
+}
+.lenis.lenis-smooth {
+	scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+	overflow: hidden;
+}
+
+body {
+	background: var(--ink);
+	color: var(--bone);
+	font-family: var(--font-body);
+	font-size: var(--fs-body);
+	line-height: 1.6;
+	font-synthesis-weight: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	overflow-x: clip;
+}
+
+img,
+svg,
+video {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+	font: inherit;
+	color: inherit;
+	background: none;
+	border: 0;
+}
+
+button {
+	cursor: pointer;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+ul,
+ol {
+	list-style: none;
+}
+
+address {
+	font-style: normal;
+}
+
+:focus-visible {
+	outline: 2px solid var(--accent-hi);
+	outline-offset: 3px;
+	border-radius: 2px;
+}
+
+::selection {
+	background: var(--accent-solid);
+	color: var(--paper);
+}
+
+.skip-link {
+	position: fixed;
+	inset-inline-start: 1rem;
+	inset-block-start: -6rem;
+	z-index: 200;
+	padding: 0.75rem 1.25rem;
+	background: var(--accent-solid);
+	color: var(--paper);
+	font-size: 0.8125rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	transition: inset-block-start 0.25s var(--ease-out);
+}
+.skip-link:focus-visible {
+	inset-block-start: 1rem;
+}
+
+/* --- Layout primitives ------------------------------------------------ */
+.shell {
+	width: var(--shell);
+	margin-inline: auto;
+}
+
+section {
+	position: relative;
+	background: var(--bg);
+	color: var(--fg);
+}
+
+/* --- Typography primitives -------------------------------------------- */
+.display {
+	font-family: var(--font-display);
+	font-weight: 600;
+	line-height: 0.9;
+	letter-spacing: -0.035em;
+	text-transform: uppercase;
+	text-wrap: balance;
+}
+
+.display--lg {
+	font-size: var(--fs-display-lg);
+}
+.display--md {
+	font-size: var(--fs-display-md);
+}
+.display--sm {
+	font-size: var(--fs-display-sm);
+	letter-spacing: -0.02em;
+}
+
+.display em,
+.hero__title em {
+	font-family: var(--font-serif);
+	font-style: italic;
+	font-weight: 400;
+	letter-spacing: -0.01em;
+	text-transform: none;
+	color: var(--accent-hi);
+}
+
+.eyebrow {
+	display: flex;
+	align-items: center;
+	gap: 0.875rem;
+	font-size: var(--fs-eyebrow);
+	font-weight: 500;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+
+.eyebrow__rule {
+	width: clamp(1.5rem, 4vw, 3.5rem);
+	height: 1px;
+	background: currentColor;
+	opacity: 0.5;
+}
+
+/* Split-text scaffolding. JS wraps content; CSS provides the mask. */
+.line,
+.word {
+	display: block;
+	overflow: hidden;
+}
+.word {
+	display: inline-block;
+	vertical-align: top;
+	padding-block-end: 0.08em;
+	margin-block-end: -0.08em;
+}
+.line__i,
+.word__i {
+	display: inline-block;
+	will-change: transform;
+}
+
+/* --- Buttons ----------------------------------------------------------- */
+.btn {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 1.0625rem 2rem;
+	min-height: 3.25rem;
+	font-family: var(--font-body);
+	font-size: 0.8125rem;
+	font-weight: 500;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	white-space: nowrap;
+	border: 1px solid transparent;
+	overflow: hidden;
+	isolation: isolate;
+	transition: color 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+}
+
+.btn__label {
+	position: relative;
+	z-index: 2;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.btn__arrow {
+	display: inline-block;
+	transition: transform 0.5s var(--ease-out);
+}
+
+/* The wipe: a pink disc that grows out of the point where the cursor entered.
+   magnetic.js writes --bx/--by on pointerenter; the CSS default keeps it
+   sensible for keyboard focus and touch. */
+.btn::after {
+	content: '';
+	position: absolute;
+	z-index: 1;
+	inset-block-start: var(--by, 50%);
+	inset-inline-start: var(--bx, 50%);
+	width: 0;
+	height: 0;
+	padding-block-start: 240%;
+	padding-inline-start: 240%;
+	translate: -50% -50%;
+	border-radius: 999px;
+	background: var(--btn-fill, var(--pink));
+	scale: 0;
+	transition: scale 0.62s var(--ease-out);
+	will-change: scale;
+}
+
+.btn:hover::after,
+.btn:focus-visible::after {
+	scale: 1;
+}
+
+/* Arrow lifts diagonally and rotates slightly; the label follows a hair behind
+   so the two do not read as one rigid block. */
+.btn:hover .btn__arrow,
+.btn:focus-visible .btn__arrow {
+	transform: translate3d(0.24em, -0.24em, 0) rotate(45deg);
+}
+
+.btn:hover .btn__label,
+.btn:focus-visible .btn__label {
+	transform: translate3d(0, -1px, 0);
+}
+
+.btn__label {
+	transition: transform 0.5s var(--ease-out) 0.03s;
+}
+
+.btn:active {
+	scale: 0.985;
+}
+
+/* A generous variant for the closing call to action. */
+.btn--lg {
+	padding: 1.35rem 2.75rem;
+	min-height: 4rem;
+	font-size: 0.875rem;
+}
+
+/* Pink is the hover language across every variant — the resting states differ,
+   the reaction does not. */
+.btn--solid {
+	background: var(--accent-solid);
+	color: var(--paper);
+	--btn-fill: var(--pink);
+}
+.btn--solid:hover,
+.btn--solid:focus-visible {
+	color: var(--ink);
+}
+
+.btn--line {
+	border-color: var(--line);
+	color: var(--fg);
+	--btn-fill: var(--pink);
+}
+.btn--line:hover,
+.btn--line:focus-visible {
+	color: var(--ink);
+	border-color: var(--pink);
+}
+
+.btn--pill {
+	border-radius: 999px;
+	border-color: var(--line);
+	padding-block: 0.75rem;
+	padding-inline: 1.375rem;
+	min-height: 2.75rem;
+	--btn-fill: var(--pink);
+}
+.btn--pill:hover,
+.btn--pill:focus-visible {
+	color: var(--ink);
+	border-color: var(--pink);
+}
+
+.btn--ghost {
+	border-color: var(--line);
+	color: var(--fg);
+	--btn-fill: var(--pink);
+}
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+	color: var(--ink);
+	border-color: var(--pink);
+}
+.btn--ghost .btn__arrow--down {
+	position: relative;
+	z-index: 2;
+	transition: transform 0.45s var(--ease-out);
+}
+.btn--ghost:hover .btn__arrow--down {
+	transform: translate3d(0, 0.25em, 0);
+}
+.btn--ghost.is-open .btn__arrow--down {
+	transform: rotate(180deg);
+}
+
+.btn--block {
+	display: flex;
+	width: 100%;
+}
+
+/* --- Reduced motion ---------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+
+	html,
+	html.lenis {
+		scroll-behavior: auto !important;
+	}
+}

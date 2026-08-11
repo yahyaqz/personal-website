@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Olea — Coastal Mediterranean, rooted in Calgary</title>
+<meta name="description" content="Olea is a modern coastal-Mediterranean restaurant and café in Calgary — seasonal small plates, natural wine, and sun-warmed hospitality.">
+<script>
+  /* Runs before paint. Decide whether this view should animate.
+     - Embedded preview (?embed) or reduced-motion  -> .is-embed : everything visible, no entrance motion.
+     - Otherwise                                     -> .is-anim  : entrance + scroll animations enabled.
+     If JS is disabled neither class is added, so the animation-only hidden
+     states (all scoped to html.is-anim) never apply and content stays visible. */
+  (function () {
+    try {
+      var embed = new URLSearchParams(location.search).has('embed');
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.documentElement.classList.add(embed || reduce ? 'is-embed' : 'is-anim');
+    } catch (e) {
+      document.documentElement.classList.add('is-embed');
+    }
+  })();
+</script>
+<style>
+  :root{
+    --bone:#F6F1E7;
+    --bone-2:#EFE7D8;
+    --paper:#FBF8F1;
+    --olive:#3B4A2F;
+    --olive-2:#556446;
+    --olive-deep:#2C3722;
+    --clay:#BE6A45;
+    --clay-deep:#A5563A;
+    --ink:#2A2723;
+    --ink-soft:#544E45;
+    --line:rgba(43,39,34,.14);
+    --line-soft:rgba(43,39,34,.08);
+    --shadow:0 24px 60px -30px rgba(44,55,34,.45);
+    --serif:Georgia,'Times New Roman',Times,serif;
+    --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bone);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none!important;transition:none!important;}
+  }
+
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  h1,h2,h3,h4{margin:0;font-family:var(--serif);font-weight:400;letter-spacing:-.01em;}
+  p{margin:0;}
+
+  .wrap{max-width:1200px;margin:0 auto;padding:0 40px;}
+  @media (max-width:640px){.wrap{padding:0 22px;}}
+
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.24em;
+    text-transform:uppercase;
+    color:var(--clay-deep);
+  }
+  .eyebrow--muted{color:var(--olive-2);}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:.6em;
+    font-family:var(--sans);font-size:13px;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;
+    padding:.95em 1.6em;border-radius:100px;
+    border:1px solid transparent;cursor:pointer;
+    transition:background .3s ease,color .3s ease,border-color .3s ease,transform .3s ease;
+  }
+  .btn--solid{background:var(--olive);color:var(--paper);}
+  .btn--solid:hover{background:var(--olive-deep);transform:translateY(-2px);}
+  .btn--clay{background:var(--clay);color:var(--paper);}
+  .btn--clay:hover{background:var(--clay-deep);transform:translateY(-2px);}
+  .btn--ghost{background:transparent;color:var(--ink);border-color:var(--line);}
+  .btn--ghost:hover{border-color:var(--olive);color:var(--olive);}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,241,231,.72);
+    backdrop-filter:saturate(140%) blur(12px);
+    -webkit-backdrop-filter:saturate(140%) blur(12px);
+    border-bottom:1px solid transparent;
+    transition:background .4s ease,border-color .4s ease,box-shadow .4s ease;
+  }
+  .nav.scrolled{
+    background:rgba(246,241,231,.9);
+    border-bottom-color:var(--line);
+    box-shadow:0 10px 30px -22px rgba(44,55,34,.5);
+  }
+  .nav__inner{display:flex;align-items:center;justify-content:space-between;height:76px;transition:height .4s ease;}
+  @media (min-width:861px){.nav.scrolled .nav__inner{height:66px;}}
+  .brand{display:flex;align-items:center;gap:.62em;font-family:var(--serif);font-size:26px;letter-spacing:.02em;}
+  .brand .mark{width:26px;height:26px;color:var(--olive);}
+  .nav__links{display:flex;align-items:center;gap:38px;}
+  .nav__links a.link{
+    font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-soft);position:relative;padding:4px 0;transition:color .25s ease;
+  }
+  .nav__links a.link::after{
+    content:"";position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:var(--clay);transition:width .3s ease;
+  }
+  .nav__links a.link:hover{color:var(--ink);}
+  .nav__links a.link:hover::after{width:100%;}
+  .nav__cta{display:flex;align-items:center;gap:24px;}
+  @media (max-width:860px){
+    .nav__inner{height:auto;flex-direction:column;gap:14px;padding:16px 0;}
+    .nav__links{gap:26px;flex-wrap:wrap;justify-content:center;}
+    .nav__cta{gap:18px;}
+  }
+  @media (max-width:420px){
+    .nav__links{gap:18px;}
+    .nav__links a.link{font-size:12px;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;overflow:hidden;padding:96px 0 88px;}
+  .hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center;}
+  .hero h1{font-size:clamp(46px,7.4vw,104px);line-height:.98;letter-spacing:-.02em;margin:22px 0 0;}
+  .hero h1 em{font-style:italic;color:var(--clay-deep);}
+  .hero__lede{margin-top:26px;max-width:30em;font-size:clamp(17px,1.7vw,20px);color:var(--ink-soft);}
+  .hero__cta{margin-top:36px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+  .hero__meta{
+    margin-top:46px;padding-top:26px;border-top:1px solid var(--line);
+    display:flex;gap:44px;flex-wrap:wrap;
+  }
+  .hero__meta .item{max-width:16em;}
+  .hero__meta .k{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--olive-2);}
+  .hero__meta .v{margin-top:6px;font-size:15.5px;color:var(--ink);line-height:1.5;}
+
+  .hero__art{position:relative;}
+  .hero__frame{
+    position:relative;border-radius:220px 220px 18px 18px;overflow:hidden;
+    box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.4);aspect-ratio:4/5;
+  }
+  .hero__badge{
+    position:absolute;left:-26px;bottom:34px;background:var(--paper);
+    border:1px solid var(--line);border-radius:16px;padding:16px 20px;box-shadow:0 18px 40px -24px rgba(44,55,34,.6);
+  }
+  .hero__badge .t{font-family:var(--serif);font-size:20px;line-height:1;}
+  .hero__badge .s{margin-top:5px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--olive-2);font-weight:600;}
+  @media (max-width:900px){
+    .hero{padding:64px 0 60px;}
+    .hero__grid{grid-template-columns:1fr;gap:44px;}
+    .hero__art{max-width:440px;}
+    .hero__badge{left:auto;right:20px;}
+  }
+
+  /* section shell */
+  .section{padding:96px 0;}
+  .section--tint{background:var(--paper);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);}
+  .section__head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:52px;}
+  .section__head h2{font-size:clamp(32px,4.6vw,56px);line-height:1.02;max-width:11em;}
+  .section__head p{max-width:24em;color:var(--ink-soft);font-size:16px;}
+  @media (max-width:760px){
+    .section{padding:66px 0;}
+    .section__head{flex-direction:column;align-items:flex-start;gap:16px;margin-bottom:38px;}
+  }
+
+  /* ---------- MENU ---------- */
+  .menu__cols{display:grid;grid-template-columns:1fr 1fr;gap:20px 72px;}
+  .dish{display:flex;gap:16px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line-soft);}
+  .dish__body{flex:1;transition:transform .45s cubic-bezier(.22,1,.36,1);}
+  .dish:hover .dish__body{transform:translateX(6px);}
+  .dish__top{display:flex;align-items:baseline;gap:12px;}
+  .dish__name{font-family:var(--serif);font-size:22px;line-height:1.2;transition:color .35s ease;}
+  .dish:hover .dish__name{color:var(--clay-deep);}
+  .dish__dots{position:relative;flex:1;border-bottom:1px dotted var(--line);transform:translateY(-4px);}
+  .dish__dots::after{content:"";position:absolute;left:0;right:100%;bottom:-1px;border-bottom:1.5px solid var(--clay);transition:right .55s cubic-bezier(.22,1,.36,1);}
+  .dish:hover .dish__dots::after{right:0;}
+  .dish__price{font-family:var(--serif);font-size:20px;color:var(--clay-deep);transition:transform .35s ease;}
+  .dish:hover .dish__price{transform:scale(1.08);}
+  .dish__desc{margin-top:5px;font-size:14.5px;color:var(--ink-soft);max-width:30em;}
+  .dish__tag{display:inline-block;margin-top:8px;font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--olive-2);border:1px solid var(--line);border-radius:100px;padding:3px 10px;}
+  .menu__foot{margin-top:44px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--ink-soft);font-size:14px;}
+  @media (max-width:760px){.menu__cols{grid-template-columns:1fr;gap:0;}}
+
+  /* ---------- STORY ---------- */
+  .story__grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center;}
+  .story__art{border-radius:18px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:1/1;}
+  .story h2{font-size:clamp(30px,4.2vw,50px);line-height:1.05;margin-bottom:22px;}
+  .story p+p{margin-top:18px;}
+  .story__lead{color:var(--ink);font-size:19px;}
+  .story__body{color:var(--ink-soft);}
+  .stats{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;border-top:1px solid var(--line);padding-top:30px;}
+  .stat .n{font-family:var(--serif);font-size:clamp(30px,4vw,44px);line-height:1;color:var(--olive);}
+  .stat .l{margin-top:8px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);}
+  @media (max-width:820px){
+    .story__grid{grid-template-columns:1fr;gap:38px;}
+    .story__art{max-width:420px;}
+  }
+  @media (max-width:460px){.stats{grid-template-columns:1fr;gap:16px;}}
+
+  /* ---------- GALLERY ---------- */
+  .gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;}
+  .plate{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 20px 46px -30px rgba(44,55,34,.5);border:1px solid rgba(255,255,255,.35);transition:transform .55s cubic-bezier(.22,1,.36,1),box-shadow .55s cubic-bezier(.22,1,.36,1);}
+  .plate>svg{transition:transform .8s cubic-bezier(.22,1,.36,1);will-change:transform;}
+  .plate .cap{transition:transform .55s cubic-bezier(.22,1,.36,1);}
+  @media (hover:hover){
+    .plate:hover{transform:translateY(-8px);box-shadow:0 34px 60px -32px rgba(44,55,34,.62);}
+    .plate:hover>svg{transform:scale(1.07);}
+  }
+  .plate .cap{
+    position:absolute;left:0;right:0;bottom:0;padding:18px 18px 16px;
+    background:linear-gradient(to top,rgba(28,30,22,.72),rgba(28,30,22,0));
+    color:#F7F3E9;
+  }
+  .plate .cap .t{font-family:var(--serif);font-size:18px;}
+  .plate .cap .s{margin-top:2px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.82;font-weight:600;}
+  .plate svg{width:100%;height:100%;object-fit:cover;}
+  .plate--a{grid-column:span 3;aspect-ratio:16/11;}
+  .plate--b{grid-column:span 3;aspect-ratio:16/11;}
+  .plate--c{grid-column:span 2;aspect-ratio:4/5;}
+  .plate--d{grid-column:span 2;aspect-ratio:4/5;}
+  .plate--e{grid-column:span 2;aspect-ratio:4/5;}
+  @media (max-width:760px){
+    .gallery{grid-template-columns:repeat(2,1fr);}
+    .plate--a,.plate--b{grid-column:span 2;aspect-ratio:16/10;}
+    .plate--c,.plate--d,.plate--e{grid-column:span 1;}
+    .plate--e{grid-column:span 2;aspect-ratio:16/9;}
+  }
+
+  /* ---------- VISIT ---------- */
+  .visit__grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+  .info-row{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--line-soft);}
+  .info-row .ic{width:24px;height:24px;color:var(--olive);flex:none;margin-top:2px;}
+  .info-row .k{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--olive-2);}
+  .info-row .v{margin-top:3px;font-size:16px;color:var(--ink);line-height:1.5;}
+  .info-row .v a:hover{color:var(--clay-deep);}
+  .rescard{background:var(--olive);color:#EEE9DC;border-radius:22px;padding:40px;box-shadow:var(--shadow);}
+  .rescard h3{color:#FBF8F1;font-size:30px;margin-bottom:6px;}
+  .rescard p.sub{color:rgba(251,248,241,.72);font-size:15px;margin-bottom:26px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(251,248,241,.7);margin-bottom:7px;}
+  .field input,.field select{
+    width:100%;font-family:var(--sans);font-size:15px;color:#FBF8F1;
+    background:rgba(251,248,241,.08);border:1px solid rgba(251,248,241,.22);
+    border-radius:10px;padding:12px 14px;transition:border-color .25s ease,background .25s ease;
+  }
+  .field input::placeholder{color:rgba(251,248,241,.45);}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--clay);background:rgba(251,248,241,.13);}
+  .field select option{color:#2A2723;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .rescard .btn--clay{width:100%;justify-content:center;margin-top:8px;}
+  .rescard .note{margin-top:14px;font-size:12.5px;color:rgba(251,248,241,.6);text-align:center;}
+  @media (max-width:820px){
+    .visit__grid{grid-template-columns:1fr;gap:40px;}
+    .rescard{padding:30px;}
+  }
+
+  /* ---------- FOOTER ---------- */
+  .footer{background:var(--olive-deep);color:rgba(246,241,231,.8);padding:70px 0 34px;}
+  .footer__top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:44px;border-bottom:1px solid rgba(246,241,231,.14);}
+  .footer .brand{color:#F6F1E7;}
+  .footer .brand .mark{color:var(--clay);}
+  .footer__blurb{margin-top:16px;max-width:24em;font-size:14.5px;color:rgba(246,241,231,.62);}
+  .footer h4{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,231,.55);margin-bottom:16px;}
+  .footer ul{list-style:none;margin:0;padding:0;}
+  .footer li{margin-bottom:10px;}
+  .footer li a{font-size:14.5px;color:rgba(246,241,231,.82);transition:color .25s ease;}
+  .footer li a:hover{color:var(--clay);}
+  .footer__bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:26px;font-size:13px;color:rgba(246,241,231,.55);}
+  .footer__bottom a{color:rgba(246,241,231,.8);}
+  .footer__bottom a:hover{color:var(--clay);}
+  @media (max-width:720px){.footer__top{grid-template-columns:1fr;gap:30px;}}
+
+  /* ============================================================
+     ANIMATION LAYER
+     Every initial-hidden state below is scoped to html.is-anim, which
+     is only added (before paint) for a normal, motion-OK visit. In an
+     embedded preview (?embed), under prefers-reduced-motion, or with JS
+     disabled, html.is-anim is absent, so NOTHING is hidden — the page is
+     fully visible and static. Decorative loops (below) may still run.
+     ============================================================ */
+  :root{--ease:cubic-bezier(.22,1,.36,1);}
+
+  /* ---- Scroll reveals: standalone blocks ----
+     Offsets use the independent `translate` property (not `transform`) so hover
+     effects that use `transform` compose cleanly with the rested reveal state. */
+  html.is-anim .reveal{opacity:0;translate:0 26px;transition:opacity .9s var(--ease),translate .9s var(--ease);}
+  html.is-anim .reveal.in{opacity:1;translate:0 0;}
+
+  /* ---- Scroll reveals: staggered children ---- */
+  html.is-anim .stagger>*{opacity:0;translate:0 24px;transition:opacity .75s var(--ease),translate .75s var(--ease);}
+  html.is-anim .stagger.in>*{opacity:1;translate:0 0;}
+  html.is-anim .stagger.in>*:nth-child(1){transition-delay:.04s;}
+  html.is-anim .stagger.in>*:nth-child(2){transition-delay:.11s;}
+  html.is-anim .stagger.in>*:nth-child(3){transition-delay:.18s;}
+  html.is-anim .stagger.in>*:nth-child(4){transition-delay:.25s;}
+  html.is-anim .stagger.in>*:nth-child(5){transition-delay:.32s;}
+  html.is-anim .stagger.in>*:nth-child(6){transition-delay:.39s;}
+  html.is-anim .stagger.in>*:nth-child(7){transition-delay:.46s;}
+  html.is-anim .stagger.in>*:nth-child(8){transition-delay:.53s;}
+
+  /* ---- Hero load-in (autoplays via CSS once html.is-anim is set) ---- */
+  .hero-title .line{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em;}
+  .hero-title .line__in{display:block;}
+  @keyframes clipUp{from{transform:translateY(118%);}to{transform:translateY(0);}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+  @keyframes artIn{from{opacity:0;transform:scale(1.05) translateY(16px);}to{opacity:1;transform:none;}}
+  html.is-anim .hero-title .line__in{animation:clipUp 1.05s var(--ease) both;}
+  html.is-anim .hero-title .line:nth-child(1) .line__in{animation-delay:.18s;}
+  html.is-anim .hero-title .line:nth-child(2) .line__in{animation-delay:.32s;}
+  html.is-anim .hero-anim{animation:fadeUp .95s var(--ease) both;animation-delay:var(--delay,0s);}
+  html.is-anim .hero__frame{animation:artIn 1.3s var(--ease) both;animation-delay:.2s;}
+
+  /* ---- Decorative loop: soft glow drift on the hero sun (safe in embed) ---- */
+  @keyframes sunBreathe{0%,100%{opacity:.9;}50%{opacity:1;}}
+  @media (prefers-reduced-motion:no-preference){
+    .hero__frame .heroSun-anim{animation:sunBreathe 7s ease-in-out infinite;transform-origin:center;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="#top" aria-label="Olea home">
+      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true" fill="none">
+        <path d="M4 15c3.5-1 6-4.2 8-8 2 3.8 4.5 7 8 8-3.5 1-6 4.2-8 8-2-3.8-4.5-7-8-8Z" fill="currentColor" opacity=".92"/>
+        <circle cx="12" cy="15" r="1.6" fill="#F6F1E7"/>
+      </svg>
+      <span>Olea</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a class="link" href="#menu">Menu</a>
+      <a class="link" href="#story">Story</a>
+      <a class="link" href="#visit">Visit</a>
+    </nav>
+    <div class="nav__cta">
+      <a class="btn btn--solid" href="#reserve">Reserve</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
+        <span class="eyebrow hero-anim" style="--delay:.05s">Restaurant &amp; Café · Calgary</span>
+        <h1 class="hero-title">
+          <span class="line"><span class="line__in">Coastal Mediterranean,</span></span>
+          <span class="line"><span class="line__in"><em>rooted</em> in Calgary.</span></span>
+        </h1>
+        <p class="hero__lede hero-anim" style="--delay:.5s">Sun-warmed small plates, natural wine, and slow mornings — Olea brings the light of the olive coast to the foothills, one season at a time.</p>
+        <div class="hero__cta hero-anim" style="--delay:.62s">
+          <a class="btn btn--clay" href="#reserve">Reserve a table</a>
+          <a class="btn btn--ghost" href="#menu">View the menu</a>
+        </div>
+        <div class="hero__meta hero-anim" style="--delay:.74s">
+          <div class="item">
+            <div class="k">Hours</div>
+            <div class="v">Tue–Sun · 5–11pm<br>Brunch Sat &amp; Sun from 10am</div>
+          </div>
+          <div class="item">
+            <div class="k">Find us</div>
+            <div class="v">418 Stephen Ave SW<br>Calgary, AB</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__art">
+        <div class="hero__frame">
+          <svg viewBox="0 0 400 500" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" role="img" aria-label="An art-directed impression of an Olea table setting bathed in warm coastal light.">
+            <defs>
+              <linearGradient id="heroSky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#E8B784"/>
+                <stop offset=".55" stop-color="#CE8659"/>
+                <stop offset="1" stop-color="#7C4A34"/>
+              </linearGradient>
+              <linearGradient id="heroTable" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#F1E7D3"/>
+                <stop offset="1" stop-color="#E0D0B4"/>
+              </linearGradient>
+              <radialGradient id="heroSun" cx="50%" cy="42%" r="34%">
+                <stop offset="0" stop-color="#FBE6C4" stop-opacity=".95"/>
+                <stop offset="1" stop-color="#FBE6C4" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="500" fill="url(#heroSky)"/>
+            <circle class="heroSun-anim" cx="200" cy="180" r="150" fill="url(#heroSun)"/>
+            <circle cx="200" cy="176" r="62" fill="#F7DFB6" opacity=".9"/>
+            <!-- hills -->
+            <path d="M0 300 Q100 258 200 292 T400 288 V360 H0Z" fill="#8A5238" opacity=".55"/>
+            <path d="M0 322 Q120 292 240 320 T400 318 V360 H0Z" fill="#5E3A2C" opacity=".5"/>
+            <!-- table -->
+            <rect x="0" y="352" width="400" height="148" fill="url(#heroTable)"/>
+            <rect x="0" y="352" width="400" height="4" fill="#C9B58F" opacity=".6"/>
+            <!-- plate -->
+            <ellipse cx="200" cy="418" rx="118" ry="34" fill="#00000012"/>
+            <ellipse cx="200" cy="410" rx="106" ry="30" fill="#FBF8F1"/>
+            <ellipse cx="200" cy="410" rx="78" ry="21" fill="#F3ECDD"/>
+            <circle cx="176" cy="406" r="7" fill="#6E7B4A"/>
+            <circle cx="214" cy="412" r="6" fill="#B65E3E"/>
+            <circle cx="196" cy="414" r="5" fill="#8A9A5B"/>
+            <path d="M150 408c14-6 30-6 44 0" stroke="#C6A66F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <!-- glass -->
+            <path d="M300 372c0 0 3 22 3 30s-9 8-9 20 6 12 6 18" stroke="#7C4A34" stroke-width="2" fill="none" opacity=".4"/>
+            <path d="M286 360h30l-4 26a11 11 0 0 1-22 0Z" fill="#B9563C" opacity=".78"/>
+            <path d="M286 360h30l-1 7H287Z" fill="#8E3F2C" opacity=".6"/>
+            <!-- sprig -->
+            <g stroke="#3B4A2F" stroke-width="2" stroke-linecap="round" opacity=".8">
+              <path d="M96 404c8-14 10-30 6-46"/>
+              <path d="M100 386c-9-2-15-8-17-16" fill="none"/>
+              <path d="M100 372c8-4 12-12 12-20" fill="none"/>
+            </g>
+            <ellipse cx="83" cy="368" rx="7" ry="4" fill="#556446" transform="rotate(-30 83 368)"/>
+            <ellipse cx="112" cy="350" rx="7" ry="4" fill="#556446" transform="rotate(30 112 350)"/>
+          </svg>
+        </div>
+        <div class="hero__badge hero-anim" style="--delay:1s">
+          <div class="t">Est. 2021</div>
+          <div class="s">Table for two</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="section section--tint" id="menu">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <div>
+          <span class="eyebrow">Seasonal · Autumn Table</span>
+          <h2>A menu that follows the light and the harvest.</h2>
+        </div>
+        <p>Small plates built for sharing, changing with what our growers and the coast send our way each week.</p>
+      </div>
+
+      <div class="menu__cols stagger">
+        <div class="dish">
+          <div class="dish__body">
+            <div class="dish__top">
+              <span class="dish__name">Whipped Feta &amp; Honey</span>
+              <span class="dish__dots" aria-hidden="true"></span>
+              <span class="dish__price">$16</span>
+            </div>
+            <p class="dish__desc">Barrel-aged feta, wildflower honey, Aleppo oil, warm sesame flatbread.</p>
+            <span class="dish__tag">Vegetarian</span>
+          </div>
+        </div>
+        <div class="dish">
+          <div class="dish__body">
+            <div class="dish__top">
+              <span class="dish__name">Charred Octopus</span>
+              <span class="dish__dots" aria-hidden="true"></span>
+              <span class="dish__price">$26</span>
+            </div>
+            <p class="dish__desc">Coastal octopus, gigante beans, smoked paprika, preserved lemon.</p>
+          </div>
+        </div>
+        <div class="dish">
+          <div class="dish__body">
+            <div class="dish__top">
+              <span class="dish__name">Heirloom Tomato &amp; Stone Fruit</span>
+              <span class="dish__dots" aria-hidden="true"></span>
+              <span class="dish__price">$18</span>
+            </div>
+            <p class="dish__desc">Foothills tomatoes, peach, torn basil, olive-oil crumble, saba.</p>
+            <span class="dish__tag">Vegan</span>
+          </div>
+        </div>
+        <div class="dish">
+          <div class="dish__body">
+            <div class="dish__top">
+              <span class="dish__name">Saffron Seafood Orzo</span>
+              <span class="dish__dots" aria-hidden="true"></span>
+              <span class="dish__price">$29</span>
+            </div>
+            <p class="dish__desc">Prawns, mussels, saffron broth, toasted orzo, fennel, chili.</p>
+          </div>
+        </div>
+        <div class="dish">
+          <div class="dish__body">
+            <div class="dish__top">
+              <span class="dish__name">Wood-Grilled Lamb</span>
+              <span class="dish__dots" aria-hidden="true"></span>
+              <span class="dish__price">$34</span>
+            </div>
+            <p class="dish__desc">Alberta lamb shoulder, charred eggplant, mint gremolata, labneh.</p>
+          </div>
+        </div>
+        <div class="dish">
+          <div class="dish__body">
+            <div class="dish__top">
+              <span class="dish__name">Olive Oil Cake</span>
+              <span class="dish__dots" aria-hidden="true"></span>
+              <span class="dish__price">$14</span>
+            </div>
+            <p class="dish__desc">Citrus &amp; rosemary olive-oil cake, crème fraîche, candied peel.</p>
+            <span class="dish__tag">Vegetarian</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu__foot reveal">
+        <span>Full à la carte &amp; a rotating natural-wine list available in the room.</span>
+        <a class="btn btn--ghost" href="#reserve">Reserve to dine</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="section" id="story">
+    <div class="wrap story__grid">
+      <div class="story__art reveal">
+        <svg viewBox="0 0 500 500" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" role="img" aria-label="An art-directed impression of an olive grove under a bright southern sky.">
+          <defs>
+            <linearGradient id="groveSky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#EFD9B0"/>
+              <stop offset="1" stop-color="#D9C79E"/>
+            </linearGradient>
+            <linearGradient id="groveGround" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#B79A63"/>
+              <stop offset="1" stop-color="#8C7845"/>
+            </linearGradient>
+          </defs>
+          <rect width="500" height="500" fill="url(#groveSky)"/>
+          <circle cx="380" cy="120" r="70" fill="#F6E6C2" opacity=".8"/>
+          <rect y="330" width="500" height="170" fill="url(#groveGround)"/>
+          <!-- rows of trees -->
+          <g>
+            <path d="M120 340c-30-6-46-40-30-70 14 30 46 30 30 70Z" fill="#3B4A2F" opacity=".9"/>
+            <rect x="117" y="336" width="6" height="30" fill="#6B5537"/>
+            <ellipse cx="120" cy="300" rx="42" ry="34" fill="#455739"/>
+            <ellipse cx="120" cy="292" rx="30" ry="24" fill="#556446"/>
+          </g>
+          <g>
+            <rect x="277" y="332" width="6" height="34" fill="#6B5537"/>
+            <ellipse cx="280" cy="296" rx="46" ry="38" fill="#3F5033"/>
+            <ellipse cx="280" cy="288" rx="32" ry="26" fill="#5C6B4C"/>
+          </g>
+          <g>
+            <rect x="417" y="338" width="6" height="30" fill="#6B5537"/>
+            <ellipse cx="420" cy="308" rx="38" ry="30" fill="#455739"/>
+            <ellipse cx="420" cy="302" rx="26" ry="21" fill="#586747"/>
+          </g>
+          <!-- olives -->
+          <circle cx="108" cy="298" r="4" fill="#2C3722"/>
+          <circle cx="132" cy="286" r="4" fill="#7C4A34"/>
+          <circle cx="270" cy="292" r="4.5" fill="#2C3722"/>
+          <circle cx="292" cy="300" r="4.5" fill="#6B4130"/>
+          <!-- path -->
+          <path d="M0 470 Q250 400 500 470" stroke="#C9B58F" stroke-width="26" fill="none" opacity=".5"/>
+          <!-- stone wall -->
+          <g opacity=".55" fill="#C6AF83">
+            <rect x="30" y="392" width="60" height="20" rx="4"/>
+            <rect x="96" y="392" width="46" height="20" rx="4"/>
+            <rect x="40" y="414" width="50" height="20" rx="4"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="story">
+        <span class="eyebrow reveal">Our Story</span>
+        <h2 class="reveal">A little of the coast, kept close to home.</h2>
+        <p class="story__lead reveal">Olea began with a simple idea — that a long table, good olive oil, and honest cooking can hold a room together. Founders Marisa and Theo brought the rhythm of the Mediterranean coast to the foothills and never let go of it.</p>
+        <p class="story__body reveal">We cook seasonally and source close, letting Alberta's growers and the day's catch shape a menu that never sits still. Bread is baked each morning, wine is poured with intent, and everything on the plate has somewhere it came from.</p>
+        <div class="stats stagger">
+          <div class="stat">
+            <div class="n" data-count="2021" data-from="1996">2021</div>
+            <div class="l">Established</div>
+          </div>
+          <div class="stat">
+            <div class="n" data-count="200" data-suffix="km">200km</div>
+            <div class="l">Sourcing radius</div>
+          </div>
+          <div class="stat">
+            <div class="n" data-count="42">42</div>
+            <div class="l">Natural wines</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section section--tint">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <div>
+          <span class="eyebrow eyebrow--muted">From the room</span>
+          <h2>Light, stone, and the day's table.</h2>
+        </div>
+        <p>A few frames from the pass, the bar, and the long communal table at the heart of Olea.</p>
+      </div>
+
+      <div class="gallery stagger">
+        <figure class="plate plate--a">
+          <svg viewBox="0 0 640 440" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Warm overhead impression of shared small plates on a stone table.">
+            <defs><linearGradient id="gA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E7C79A"/><stop offset="1" stop-color="#B06845"/></linearGradient></defs>
+            <rect width="640" height="440" fill="url(#gA)"/>
+            <ellipse cx="200" cy="200" rx="120" ry="120" fill="#FBF8F1" opacity=".95"/>
+            <ellipse cx="200" cy="200" rx="88" ry="88" fill="#F1E8D6"/>
+            <circle cx="180" cy="190" r="14" fill="#6E7B4A"/><circle cx="222" cy="210" r="12" fill="#B65E3E"/><circle cx="200" cy="224" r="9" fill="#8A9A5B"/>
+            <ellipse cx="470" cy="150" rx="92" ry="92" fill="#FBF8F1" opacity=".92"/>
+            <ellipse cx="470" cy="150" rx="66" ry="66" fill="#EFE3CC"/>
+            <path d="M430 150c26-14 54-14 80 0" stroke="#C6A66F" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <ellipse cx="500" cy="340" rx="70" ry="70" fill="#FBF8F1" opacity=".9"/>
+            <circle cx="500" cy="340" r="40" fill="#7C4A34" opacity=".55"/>
+          </svg>
+          <figcaption class="cap"><div class="t">The shared table</div><div class="s">Small plates, one spread</div></figcaption>
+        </figure>
+
+        <figure class="plate plate--b">
+          <svg viewBox="0 0 640 440" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Impression of a glass of natural orange wine catching afternoon light.">
+            <defs><linearGradient id="gB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3B4A2F"/><stop offset="1" stop-color="#243019"/></linearGradient></defs>
+            <rect width="640" height="440" fill="url(#gB)"/>
+            <circle cx="440" cy="150" r="150" fill="#E8A24A" opacity=".18"/>
+            <path d="M300 120h84l-11 88a31 31 0 0 1-62 0Z" fill="#D98A3C" opacity=".9"/>
+            <path d="M300 120h84l-3 22h-78Z" fill="#B9682A" opacity=".8"/>
+            <rect x="338" y="252" width="8" height="70" fill="#C7B48C" opacity=".7"/>
+            <ellipse cx="342" cy="330" rx="46" ry="10" fill="#C7B48C" opacity=".6"/>
+            <g stroke="#8A9A5B" stroke-width="4" fill="none" stroke-linecap="round" opacity=".8">
+              <path d="M150 320c20-30 24-70 14-104"/><path d="M164 250c-22-4-36-20-40-40"/>
+            </g>
+            <ellipse cx="112" cy="212" rx="16" ry="9" fill="#556446" transform="rotate(-30 112 212)"/>
+          </svg>
+          <figcaption class="cap"><div class="t">By the glass</div><div class="s">Low-intervention pours</div></figcaption>
+        </figure>
+
+        <figure class="plate plate--c">
+          <svg viewBox="0 0 320 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Impression of warm flatbread fresh from the wood oven.">
+            <defs><linearGradient id="gC" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E4B078"/><stop offset="1" stop-color="#9C5A38"/></linearGradient></defs>
+            <rect width="320" height="400" fill="url(#gC)"/>
+            <ellipse cx="160" cy="210" rx="120" ry="150" fill="#E8CE9E"/>
+            <ellipse cx="160" cy="210" rx="120" ry="150" fill="#00000010"/>
+            <g fill="#8A5A34" opacity=".55"><circle cx="120" cy="160" r="8"/><circle cx="200" cy="150" r="6"/><circle cx="150" cy="230" r="9"/><circle cx="210" cy="250" r="7"/><circle cx="110" cy="260" r="6"/></g>
+          </svg>
+          <figcaption class="cap"><div class="t">Morning bake</div><div class="s">Wood-fired flatbread</div></figcaption>
+        </figure>
+
+        <figure class="plate plate--d">
+          <svg viewBox="0 0 320 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Impression of the dining room's arched windows and warm light.">
+            <defs><linearGradient id="gD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F0DDB9"/><stop offset="1" stop-color="#C99A6B"/></linearGradient></defs>
+            <rect width="320" height="400" fill="url(#gD)"/>
+            <path d="M60 360V180a100 100 0 0 1 200 0v180Z" fill="#FBF3E0" opacity=".65"/>
+            <path d="M90 360V190a70 70 0 0 1 140 0v170Z" fill="#E7B57A" opacity=".55"/>
+            <rect x="150" y="140" width="20" height="220" fill="#B07A48" opacity=".5"/>
+            <rect x="60" y="248" width="200" height="16" fill="#B07A48" opacity=".5"/>
+            <circle cx="160" cy="330" r="26" fill="#3B4A2F" opacity=".5"/>
+          </svg>
+          <figcaption class="cap"><div class="t">The room</div><div class="s">Arches &amp; afternoon light</div></figcaption>
+        </figure>
+
+        <figure class="plate plate--e">
+          <svg viewBox="0 0 320 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Impression of a bowl of glistening cured olives.">
+            <defs><linearGradient id="gE" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5C6B4C"/><stop offset="1" stop-color="#2C3722"/></linearGradient></defs>
+            <rect width="320" height="400" fill="url(#gE)"/>
+            <ellipse cx="160" cy="220" rx="118" ry="96" fill="#D9C79E" opacity=".95"/>
+            <ellipse cx="160" cy="210" rx="92" ry="72" fill="#B79A63"/>
+            <g><circle cx="130" cy="200" r="15" fill="#2C3722"/><circle cx="168" cy="188" r="15" fill="#556446"/><circle cx="200" cy="210" r="14" fill="#3B2A1E"/><circle cx="150" cy="228" r="14" fill="#3B4A2F"/><circle cx="188" cy="234" r="13" fill="#2C3722"/><circle cx="126" cy="232" r="10" fill="#556446"/></g>
+            <path d="M150 168c8-14 20-20 34-20" stroke="#8A9A5B" stroke-width="4" fill="none" stroke-linecap="round"/>
+          </svg>
+          <figcaption class="cap"><div class="t">House-cured</div><div class="s">Olives, three ways</div></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT / RESERVE -->
+  <section class="section" id="visit">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <div>
+          <span class="eyebrow">Visit Olea</span>
+          <h2>Find us on Stephen Avenue.</h2>
+        </div>
+        <p>Walk-ins welcome at the bar. For the table, we recommend booking a few days ahead.</p>
+      </div>
+
+      <div class="visit__grid">
+        <div class="visit__info stagger">
+          <div class="info-row">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <div><div class="k">Address</div><div class="v">418 Stephen Ave SW<br>Calgary, AB · T2P 1J9</div></div>
+          </div>
+          <div class="info-row">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+            <div><div class="k">Hours</div><div class="v">Dinner · Tue–Sun, 5–11pm<br>Brunch · Sat &amp; Sun, 10am–2pm<br>Closed Mondays</div></div>
+          </div>
+          <div class="info-row">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5c0 8.3 6.7 15 15 15a1.6 1.6 0 0 0 1.6-1.6v-2.4a1.5 1.5 0 0 0-1.2-1.5l-2.7-.6a1.5 1.5 0 0 0-1.5.5l-.8 1a11.5 11.5 0 0 1-5-5l1-.8a1.5 1.5 0 0 0 .5-1.5l-.6-2.7A1.5 1.5 0 0 0 8 3.4H5.6A1.6 1.6 0 0 0 4 5Z"/></svg>
+            <div><div class="k">Reservations</div><div class="v"><a href="tel:+14035550142">(403) 555-0142</a><br><a href="mailto:hello@oleayyc.ca">hello@oleayyc.ca</a></div></div>
+          </div>
+          <div class="info-row" style="border-bottom:none;">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-7-7 18-2.5-7.5L3 11Z"/></svg>
+            <div><div class="k">Getting here</div><div class="v">Two blocks from City Hall CTrain.<br>Street &amp; lot parking after 6pm.</div></div>
+          </div>
+        </div>
+
+        <div class="rescard reveal" id="reserve">
+          <h3>Reserve a table</h3>
+          <p class="sub">Parties up to 6 online — for larger bookings, call us and we'll set the long table.</p>
+          <form onsubmit="return false;">
+            <div class="field">
+              <label for="rname">Name</label>
+              <input id="rname" name="name" type="text" placeholder="Your name" autocomplete="name">
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="rdate">Date</label>
+                <input id="rdate" name="date" type="date">
+              </div>
+              <div class="field">
+                <label for="rtime">Time</label>
+                <select id="rtime" name="time">
+                  <option>5:00 pm</option><option>6:30 pm</option>
+                  <option>7:30 pm</option><option>8:30 pm</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="rparty">Guests</label>
+              <select id="rparty" name="party">
+                <option>2 guests</option><option>3 guests</option>
+                <option>4 guests</option><option>5 guests</option><option>6 guests</option>
+              </select>
+            </div>
+            <button class="btn btn--clay" type="submit">Request reservation</button>
+            <p class="note">A demo form — we'll confirm by email within the hour.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <div class="brand">
+          <svg class="mark" viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M4 15c3.5-1 6-4.2 8-8 2 3.8 4.5 7 8 8-3.5 1-6 4.2-8 8-2-3.8-4.5-7-8-8Z" fill="currentColor" opacity=".92"/><circle cx="12" cy="15" r="1.6" fill="#2C3722"/></svg>
+          <span>Olea</span>
+        </div>
+        <p class="footer__blurb">Coastal Mediterranean restaurant &amp; café on Stephen Avenue — seasonal plates, natural wine, and a long table for Calgary.</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#story">Our story</a></li>
+          <li><a href="#reserve">Reservations</a></li>
+          <li><a href="tel:+14035550142">(403) 555-0142</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Newsletter</a></li>
+          <li><a href="mailto:hello@oleayyc.ca">hello@oleayyc.ca</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Olea Restaurant &amp; Café · Calgary, AB</span>
+      <span>Site by <a href="#">Kontora Designs</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* Pure enhancement. If this never runs, content is already fully visible
+     (all hidden states are scoped to html.is-anim). */
+  (function () {
+    var root = document.documentElement;
+    var animate = root.classList.contains('is-anim');
+    var targets = document.querySelectorAll('.reveal, .stagger');
+
+    // Reveal everything immediately (used for embed/no-anim and as a safety net).
+    function revealAll() {
+      for (var i = 0; i < targets.length; i++) targets[i].classList.add('in');
+      runCounts();
+    }
+
+    if (!animate) { revealAll(); return; }
+
+    // ---- Scroll-triggered reveals ----
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            if (e.target.querySelector && e.target.querySelector('[data-count]')) runCounts();
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+      for (var i = 0; i < targets.length; i++) io.observe(targets[i]);
+    } else {
+      revealAll();
+    }
+
+    // ---- Safety net: nothing stays hidden even if an observer misfires ----
+    setTimeout(revealAll, 1200);
+
+    // ---- Nav hairline / condense once scrolled ----
+    var nav = document.querySelector('.nav');
+    // ---- Subtle hero parallax (on the wrapper, so it never fights the frame's entrance animation) ----
+    var frame = document.querySelector('.hero__art');
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        var y = window.pageYOffset || 0;
+        if (nav) nav.classList.toggle('scrolled', y > 12);
+        if (frame && y < 900) frame.style.transform = 'translateY(' + (y * 0.06) + 'px)';
+        ticking = false;
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // ---- Soft count-up on stats ----
+    var counted = false;
+    function runCounts() {
+      if (counted) return;
+      counted = true;
+      var nums = document.querySelectorAll('[data-count]');
+      nums.forEach(function (el) {
+        var to = parseFloat(el.getAttribute('data-count')) || 0;
+        var from = parseFloat(el.getAttribute('data-from')) || 0;
+        var suffix = el.getAttribute('data-suffix') || '';
+        var dur = 1200, start = null;
+        function step(ts) {
+          if (start === null) start = ts;
+          var p = Math.min((ts - start) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          var val = Math.round(from + (to - from) * eased);
+          el.textContent = val + suffix;
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }
+  })();
+</script>
+</body>
+</html>

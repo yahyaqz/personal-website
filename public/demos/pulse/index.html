@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pulse — Strength & Conditioning Studio · Calgary</title>
+<meta name="description" content="Pulse is a boutique strength and conditioning studio in Calgary. Small-group strength, HIIT, and mobility coaching. Train with intent.">
+<style>
+  :root{
+    --bg:#0C0C0D;
+    --bg-2:#121214;
+    --bg-3:#18181B;
+    --line:#26262A;
+    --line-2:#33333A;
+    --ink:#F4F4F0;
+    --ink-dim:#A5A5A0;
+    --ink-faint:#6E6E6C;
+    --acid:#D8FF3E;
+    --acid-deep:#B4E000;
+    --maxw:1200px;
+    --pad:clamp(20px,5vw,64px);
+    --mono:'SFMono-Regular',ui-monospace,Menlo,Consolas,monospace;
+    --display:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    --body:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img,svg{display:block;max-width:100%}
+  h1,h2,h3,h4{margin:0;font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-height:.9;text-transform:uppercase}
+  p{margin:0}
+  ::selection{background:var(--acid);color:#0C0C0D}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--acid);display:inline-block}
+  .accent{color:var(--acid)}
+
+  /* Buttons */
+  .btn{
+    position:relative;isolation:isolate;overflow:hidden;
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--display);font-weight:800;text-transform:uppercase;
+    letter-spacing:-.01em;font-size:15px;
+    padding:14px 22px;border-radius:2px;border:1px solid transparent;
+    cursor:pointer;transition:transform .22s cubic-bezier(.16,1,.3,1),background .18s ease,color .18s ease,border-color .18s ease,box-shadow .22s ease;
+    white-space:nowrap;
+  }
+  .btn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--acid);transform:translateX(-101%);transition:transform .34s cubic-bezier(.16,1,.3,1)}
+  .btn--acid{background:var(--acid);color:#0C0C0D}
+  .btn--acid::before{background:#EEFF9A}
+  .btn--acid:hover{transform:translateY(-2px);box-shadow:0 12px 30px -12px rgba(216,255,62,.55)}
+  .btn--acid:hover::before{transform:translateX(0)}
+  .btn--ghost{border-color:var(--line-2);color:var(--ink)}
+  .btn--ghost:hover{border-color:var(--acid);color:#0C0C0D;transform:translateY(-2px)}
+  .btn--ghost:hover::before{transform:translateX(0)}
+  .btn--dark::before{background:#1a1a1d}
+  .btn--dark:hover::before{transform:translateX(0)}
+  .btn--lg{padding:18px 30px;font-size:17px}
+  .btn .arw{transition:transform .22s cubic-bezier(.16,1,.3,1)}
+  .btn:hover .arw{transform:translate(4px,-4px)}
+
+  /* Nav */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(12,12,13,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px}
+  .brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.04em;text-transform:uppercase}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--acid);box-shadow:0 0 0 0 rgba(216,255,62,.55);animation:pulse 2.4s ease-out infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(216,255,62,.5)}70%{box-shadow:0 0 0 12px rgba(216,255,62,0)}100%{box-shadow:0 0 0 0 rgba(216,255,62,0)}}
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a.lnk{font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);transition:color .16s ease;position:relative}
+  .nav-links a.lnk:hover{color:var(--ink)}
+  .nav-cta{display:flex;align-items:center;gap:14px}
+
+  /* Hero */
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+  .hero-inner{position:relative;z-index:2;padding-top:clamp(48px,9vw,110px);padding-bottom:clamp(48px,8vw,96px)}
+  .hero h1{font-size:clamp(56px,13.5vw,190px);letter-spacing:-.045em}
+  .hero h1 .ln{display:block;overflow:hidden}
+  .hero h1 .stroke{color:transparent;-webkit-text-stroke:1.5px var(--ink-faint)}
+  .hero-lede{max-width:520px;margin-top:28px;color:var(--ink-dim);font-size:clamp(16px,2vw,19px);line-height:1.6}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,64px);margin-top:56px;padding-top:32px;border-top:1px solid var(--line)}
+  .stat .n{font-family:var(--display);font-weight:800;font-size:clamp(34px,5vw,52px);letter-spacing:-.04em;line-height:1}
+  .stat .n .accent{font-size:.7em;vertical-align:top}
+  .stat .l{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-top:8px}
+
+  /* Marquee ticker */
+  .ticker{border-bottom:1px solid var(--line);background:var(--acid);color:#0C0C0D;overflow:hidden}
+  .ticker-track{display:flex;gap:0;white-space:nowrap;font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:15px;letter-spacing:-.01em;padding:11px 0;animation:scroll 26s linear infinite}
+  .ticker-track span{padding:0 26px;display:inline-flex;align-items:center;gap:26px}
+  .ticker-track span::after{content:"";width:7px;height:7px;background:#0C0C0D;border-radius:50%;display:inline-block}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* Section scaffolding */
+  section{position:relative}
+  .sec{padding:clamp(64px,10vw,128px) 0}
+  .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(36px,5vw,64px)}
+  .sec-head h2{font-size:clamp(34px,6vw,72px)}
+  .sec-head .idx{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--ink-faint)}
+
+  /* Classes */
+  .classes{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .cls{position:relative;background:var(--bg);padding:32px 28px 28px;display:flex;flex-direction:column;min-height:340px;transition:background .25s ease,transform .3s cubic-bezier(.16,1,.3,1)}
+  .cls::before{content:"";position:absolute;top:0;left:0;height:3px;width:100%;background:var(--acid);transform:scaleX(0);transform-origin:left;transition:transform .32s cubic-bezier(.16,1,.3,1)}
+  .cls:hover{background:var(--bg-2);transform:translateY(-5px)}
+  .cls:hover::before{transform:scaleX(1)}
+  .cls .cls-ico{margin-bottom:auto;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+  .cls:hover .cls-ico{transform:translateY(-3px) scale(1.06)}
+  .cls .num{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--ink-faint)}
+  .cls h3{font-size:clamp(26px,3vw,34px);margin:22px 0 12px}
+  .cls:hover h3{color:var(--acid)}
+  .cls p{color:var(--ink-dim);font-size:14.5px;line-height:1.6}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+  .tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim);border:1px solid var(--line-2);padding:5px 10px;border-radius:2px}
+  .tag.hot{color:var(--acid);border-color:rgba(216,255,62,.4)}
+
+  /* Schedule */
+  .sched-wrap{border:1px solid var(--line);border-radius:3px;overflow:hidden}
+  .sched-scroll{overflow-x:auto}
+  table.sched{width:100%;border-collapse:collapse;min-width:660px}
+  table.sched th,table.sched td{text-align:left;padding:16px 18px;border-bottom:1px solid var(--line);vertical-align:middle}
+  table.sched thead th{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);background:var(--bg-2);font-weight:500}
+  table.sched tbody tr:last-child td{border-bottom:none}
+  table.sched tbody tr:hover{background:var(--bg-2)}
+  .time{font-family:var(--mono);font-size:14px;color:var(--ink);white-space:nowrap}
+  .cname{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;font-size:17px}
+  .coach{color:var(--ink-dim);font-size:13.5px}
+  .pill{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:4px 9px;border-radius:100px;border:1px solid var(--line-2);color:var(--ink-dim)}
+  .pill.s{border-color:rgba(216,255,62,.45);color:var(--acid)}
+  .sched-note{margin-top:16px;font-family:var(--mono);font-size:12px;letter-spacing:.05em;color:var(--ink-faint)}
+
+  /* Pricing */
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .tier{border:1px solid var(--line);border-radius:4px;padding:32px 28px;display:flex;flex-direction:column;background:var(--bg);position:relative;transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s ease,box-shadow .3s ease}
+  .tier:hover{transform:translateY(-6px);border-color:var(--acid);box-shadow:0 22px 46px -26px rgba(216,255,62,.4)}
+  .tier.feat{border-color:var(--acid);background:linear-gradient(180deg,rgba(216,255,62,.06),rgba(216,255,62,0) 42%)}
+  .tier.feat:hover{box-shadow:0 26px 54px -24px rgba(216,255,62,.55)}
+  .tier .badge{position:absolute;top:-11px;left:28px;background:var(--acid);color:#0C0C0D;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;padding:5px 11px;border-radius:2px;font-weight:600}
+  .tier .tname{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim)}
+  .price{display:flex;align-items:baseline;gap:6px;margin:20px 0 4px}
+  .price .amt{font-family:var(--display);font-weight:800;font-size:clamp(44px,6vw,60px);letter-spacing:-.05em;line-height:1}
+  .price .per{font-family:var(--mono);font-size:12px;color:var(--ink-faint);letter-spacing:.08em}
+  .tier .desc{color:var(--ink-dim);font-size:14px;margin-bottom:24px;min-height:42px}
+  ul.feats{list-style:none;padding:0;margin:0 0 28px;display:flex;flex-direction:column;gap:12px}
+  ul.feats li{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:var(--ink-dim)}
+  ul.feats li svg{flex:none;margin-top:3px}
+  .tier .btn{width:100%;justify-content:center;margin-top:auto}
+
+  /* Coach / testimonial split */
+  .split{display:grid;grid-template-columns:1.1fr .9fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+  .quote-cell{background:var(--bg);padding:clamp(32px,5vw,56px);display:flex;flex-direction:column;justify-content:center}
+  .quote-cell .qmark{font-family:var(--display);font-weight:800;font-size:80px;line-height:.6;color:var(--acid);height:44px}
+  .quote-cell blockquote{margin:0;font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:-.025em;line-height:1.02;font-size:clamp(24px,3.4vw,40px)}
+  .quote-cell .attr{margin-top:28px;display:flex;align-items:center;gap:14px}
+  .avatar{width:46px;height:46px;border-radius:50%;flex:none;overflow:hidden;border:1px solid var(--line-2)}
+  .attr .who{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:-.01em;font-size:15px}
+  .attr .role{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-top:2px}
+  .coach-cell{background:var(--bg-2);padding:clamp(32px,5vw,56px);display:flex;flex-direction:column;justify-content:space-between;gap:32px}
+  .coach-cell .visual{border-radius:3px;overflow:hidden;border:1px solid var(--line)}
+  .coach-meta h3{font-size:clamp(24px,3vw,32px)}
+  .coach-meta p{color:var(--ink-dim);font-size:14.5px;margin-top:12px}
+
+  /* Join band */
+  .join{position:relative;overflow:hidden;background:var(--acid);color:#0C0C0D;border-top:1px solid var(--acid);border-bottom:1px solid var(--acid)}
+  .join .wrap{position:relative;z-index:2;padding-top:clamp(56px,9vw,110px);padding-bottom:clamp(56px,9vw,110px)}
+  .join h2{font-size:clamp(40px,9vw,120px);color:#0C0C0D;letter-spacing:-.05em}
+  .join p{max-width:460px;margin-top:20px;color:#20240a;font-weight:500;font-size:clamp(15px,2vw,18px)}
+  .join .btn--dark{background:#0C0C0D;color:var(--acid);margin-top:34px}
+  .join .btn--dark:hover{transform:translateY(-2px);background:#000}
+  .join-svg{position:absolute;inset:0;z-index:0;opacity:.5;mix-blend-mode:multiply}
+
+  /* Footer */
+  footer.foot{background:var(--bg);border-top:1px solid var(--line)}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding:clamp(48px,7vw,80px) 0 44px}
+  .foot .brand{margin-bottom:18px}
+  .foot p.blurb{color:var(--ink-dim);font-size:14px;max-width:280px;line-height:1.6}
+  .foot h4{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.2em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:18px}
+  .foot ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px}
+  .foot ul a{color:var(--ink-dim);font-size:14px;transition:color .16s ease}
+  .foot ul a:hover{color:var(--acid)}
+  .foot-bar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:22px 0;border-top:1px solid var(--line)}
+  .foot-bar .copy{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--ink-faint)}
+  .credit{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--ink-faint)}
+  .credit a{color:var(--ink-dim);border-bottom:1px solid var(--line-2);padding-bottom:1px;transition:color .16s ease,border-color .16s ease}
+  .credit a:hover{color:var(--acid);border-color:var(--acid)}
+
+  /* ============================================================
+     ANIMATION LAYER
+     Hidden/entrance states apply ONLY when JS is present (html.js)
+     AND we are not in embed/reduced-motion (html.is-embed).
+     -> No JS  = no html.js  = everything visible (screenshot-safe)
+     -> ?embed = html.is-embed = everything visible, no motion
+     ============================================================ */
+
+  /* Scroll progress bar */
+  .scroll-prog{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--acid);
+    transform:scaleX(0);transform-origin:left;z-index:60;pointer-events:none;
+    box-shadow:0 0 12px rgba(216,255,62,.55)}
+  html.is-embed .scroll-prog{display:none}
+
+  /* Nav auto-hide */
+  header.nav{transition:transform .38s cubic-bezier(.16,1,.3,1)}
+  header.nav.nav-hidden{transform:translateY(-102%)}
+
+  /* --- Scroll reveal (below-the-fold sections) --- */
+  html.js:not(.is-embed) .reveal{opacity:0;transform:translateY(28px);
+    transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
+  html.js:not(.is-embed) .reveal.in{opacity:1;transform:none}
+
+  /* Staggered children (grids): container holds still, kids cascade */
+  html.js:not(.is-embed) .reveal.stagger{opacity:1;transform:none;transition:none}
+  html.js:not(.is-embed) .reveal.stagger>*{opacity:0;transform:translateY(30px);
+    transition:opacity .62s cubic-bezier(.16,1,.3,1),transform .62s cubic-bezier(.16,1,.3,1)}
+  html.js:not(.is-embed) .reveal.stagger.in>*{opacity:1;transform:none}
+  html.js:not(.is-embed) .reveal.stagger.in>*:nth-child(1){transition-delay:.04s}
+  html.js:not(.is-embed) .reveal.stagger.in>*:nth-child(2){transition-delay:.12s}
+  html.js:not(.is-embed) .reveal.stagger.in>*:nth-child(3){transition-delay:.20s}
+  html.js:not(.is-embed) .reveal.stagger.in>*:nth-child(4){transition-delay:.28s}
+
+  /* Staggered schedule rows */
+  html.js:not(.is-embed) .reveal.stagger-rows{opacity:1;transform:none;transition:none}
+  html.js:not(.is-embed) .reveal.stagger-rows tbody tr{opacity:0;transform:translateY(16px);
+    transition:opacity .5s ease,transform .55s cubic-bezier(.16,1,.3,1)}
+  html.js:not(.is-embed) .reveal.stagger-rows.in tbody tr{opacity:1;transform:none}
+  html.js:not(.is-embed) .reveal.stagger-rows.in tbody tr:nth-child(1){transition-delay:.05s}
+  html.js:not(.is-embed) .reveal.stagger-rows.in tbody tr:nth-child(2){transition-delay:.10s}
+  html.js:not(.is-embed) .reveal.stagger-rows.in tbody tr:nth-child(3){transition-delay:.15s}
+  html.js:not(.is-embed) .reveal.stagger-rows.in tbody tr:nth-child(4){transition-delay:.20s}
+  html.js:not(.is-embed) .reveal.stagger-rows.in tbody tr:nth-child(5){transition-delay:.25s}
+  html.js:not(.is-embed) .reveal.stagger-rows.in tbody tr:nth-child(6){transition-delay:.30s}
+  html.js:not(.is-embed) .reveal.stagger-rows.in tbody tr:nth-child(7){transition-delay:.35s}
+
+  /* Growing accent bar under section headings */
+  html.js:not(.is-embed) .sec-head h2{position:relative}
+  html.js:not(.is-embed) .sec-head h2::after{content:"";position:absolute;left:0;bottom:-16px;
+    height:3px;width:72px;background:var(--acid);transform:scaleX(0);transform-origin:left;
+    transition:transform .8s cubic-bezier(.16,1,.3,1) .18s}
+  html.js:not(.is-embed) .sec-head h2.in::after{transform:scaleX(1)}
+
+  /* --- HERO load-in --- */
+  html.js:not(.is-embed) .hero h1 .ln-i{display:block;transform:translateY(118%);
+    animation:lineUp .9s cubic-bezier(.16,1,.3,1) forwards}
+  html.js:not(.is-embed) .hero h1 .ln:nth-child(1) .ln-i{animation-delay:.12s}
+  html.js:not(.is-embed) .hero h1 .ln:nth-child(2) .ln-i{animation-delay:.26s}
+  @keyframes lineUp{to{transform:translateY(0)}}
+
+  html.js:not(.is-embed) .hero h1 .accent{display:inline-block;
+    animation:snapIn .55s cubic-bezier(.2,1.5,.35,1) .66s both}
+  @keyframes snapIn{0%{opacity:0;transform:scale(.5) translateY(.06em)}
+    62%{opacity:1;transform:scale(1.1)}100%{opacity:1;transform:scale(1)}}
+
+  html.js:not(.is-embed) .hero-rise{opacity:0;animation:riseIn .85s cubic-bezier(.16,1,.3,1) both}
+  @keyframes riseIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+  /* --- Safety: never leave content hidden --- */
+  html.reveal-all .reveal,
+  html.reveal-all .reveal.stagger>*,
+  html.reveal-all .reveal.stagger-rows tbody tr,
+  html.reveal-all .hero-rise{opacity:1!important;transform:none!important}
+  html.reveal-all .hero h1 .ln-i{transform:none!important;animation:none!important}
+  html.reveal-all .hero h1 .accent{opacity:1!important;transform:none!important;animation:none!important}
+
+  /* Responsive */
+  @media(max-width:1000px){
+    .classes{grid-template-columns:repeat(2,1fr)}
+    .tiers{grid-template-columns:1fr;max-width:460px;margin:0 auto}
+    .tier.feat{order:-1}
+    .split{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
+  }
+  @media(max-width:620px){
+    .nav-links{display:none}
+    .classes{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .hero-meta{gap:24px 32px}
+    .sec-head{margin-bottom:32px}
+  }
+  @media(max-width:420px){
+    .foot-grid{grid-template-columns:1fr}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal,.reveal.stagger>*,.reveal.stagger-rows tbody tr,
+    .hero-rise,.hero h1 .ln-i,.hero h1 .accent{opacity:1!important;transform:none!important}
+  }
+</style>
+<script>
+  /* Runs before first paint. Decides whether entrance animations are allowed.
+     - html.js       -> JS is present, so hidden states may be applied at all
+     - html.is-embed -> embedded preview OR reduced-motion: force everything
+                        visible, no entrance motion (screenshot / a11y safe)
+     Without JS, neither class is set, so no hidden state ever applies. */
+  (function(){
+    var h=document.documentElement;
+    h.classList.add('js');
+    try{
+      var embed=new URLSearchParams(location.search).has('embed');
+      var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(embed||reduce) h.classList.add('is-embed');
+    }catch(e){ h.classList.add('is-embed'); }
+  })();
+</script>
+</head>
+<body>
+
+<div class="scroll-prog" aria-hidden="true"></div>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand" aria-label="Pulse home"><span class="dot" aria-hidden="true"></span>Pulse</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="lnk" href="#classes">Classes</a>
+      <a class="lnk" href="#schedule">Schedule</a>
+      <a class="lnk" href="#membership">Membership</a>
+      <a class="lnk" href="#coaches">Coaches</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn--ghost" href="#membership">Log in</a>
+      <a class="btn btn--acid" href="#join">Start free</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <svg width="100%" height="100%" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="glow" cx="72%" cy="18%" r="60%">
+            <stop offset="0%" stop-color="#D8FF3E" stop-opacity="0.14"/>
+            <stop offset="45%" stop-color="#D8FF3E" stop-opacity="0.03"/>
+            <stop offset="100%" stop-color="#0C0C0D" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0C0C0D" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#0C0C0D"/>
+          </linearGradient>
+        </defs>
+        <rect width="1440" height="900" fill="url(#glow)"/>
+        <g stroke="#D8FF3E" stroke-opacity="0.10" stroke-width="1.5" fill="none">
+          <path d="M880 -40 L1480 560"/>
+          <path d="M960 -40 L1560 560"/>
+          <path d="M1040 -40 L1640 560"/>
+          <path d="M1120 -40 L1720 560"/>
+        </g>
+        <g stroke="#26262A" stroke-width="1" fill="none" opacity="0.6">
+          <path d="M0 300 H1440"/>
+          <path d="M0 620 H1440"/>
+          <path d="M480 0 V900"/>
+          <path d="M960 0 V900"/>
+        </g>
+        <circle cx="1180" cy="220" r="150" fill="none" stroke="#D8FF3E" stroke-opacity="0.16" stroke-width="1.5"/>
+        <circle cx="1180" cy="220" r="230" fill="none" stroke="#D8FF3E" stroke-opacity="0.07" stroke-width="1.5"/>
+        <rect width="1440" height="900" fill="url(#fade)"/>
+      </svg>
+    </div>
+
+    <div class="wrap hero-inner">
+      <span class="eyebrow hero-rise" style="animation-delay:.08s">Strength &amp; Conditioning · Calgary, AB</span>
+      <h1 style="margin-top:22px">
+        <span class="ln"><span class="ln-i">Train</span></span>
+        <span class="ln"><span class="ln-i">With <span class="accent">Intent.</span></span></span>
+      </h1>
+      <p class="hero-lede hero-rise" style="animation-delay:.5s">Small-group strength coaching built on progressive overload, honest feedback, and zero fluff. Show up, do the work, get measurably stronger — session after session.</p>
+      <div class="hero-actions hero-rise" style="animation-delay:.62s">
+        <a class="btn btn--acid btn--lg" href="#join">Start with a free class <span class="arw" aria-hidden="true">↗</span></a>
+        <a class="btn btn--ghost btn--lg" href="#classes">View classes</a>
+      </div>
+
+      <div class="hero-meta hero-rise" style="animation-delay:.74s">
+        <div class="stat">
+          <div class="n"><span class="count" data-to="6" data-dur="1000">6</span><span class="accent">:1</span></div>
+          <div class="l">Max athletes / coach</div>
+        </div>
+        <div class="stat">
+          <div class="n"><span class="count" data-to="1400" data-sep="1" data-dur="1500">1,400</span><span class="accent">+</span></div>
+          <div class="l">Members trained</div>
+        </div>
+        <div class="stat">
+          <div class="n"><span class="count" data-to="42" data-dur="1200">42</span></div>
+          <div class="l">Classes each week</div>
+        </div>
+        <div class="stat">
+          <div class="n"><span class="count" data-to="4.9" data-dec="1" data-dur="1200">4.9</span></div>
+          <div class="l">Avg. member rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Strength<span></span></span><span>HIIT<span></span></span><span>Mobility<span></span></span><span>Conditioning<span></span></span><span>Olympic Lifting<span></span></span><span>Recovery<span></span></span>
+      <span>Strength<span></span></span><span>HIIT<span></span></span><span>Mobility<span></span></span><span>Conditioning<span></span></span><span>Olympic Lifting<span></span></span><span>Recovery<span></span></span>
+    </div>
+  </div>
+
+  <!-- CLASSES -->
+  <section class="sec" id="classes">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow reveal">The formats</span>
+          <h2 class="reveal" style="margin-top:18px">Four ways<br>to build.</h2>
+        </div>
+        <span class="idx reveal">01 — Classes</span>
+      </div>
+
+      <div class="classes reveal stagger">
+        <article class="cls">
+          <div class="cls-ico" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#D8FF3E" stroke-width="2.2" stroke-linecap="round">
+              <path d="M8 20h24"/><path d="M11 13v14M29 13v14"/><path d="M5 16v8M35 16v8"/>
+            </svg>
+          </div>
+          <span class="num">/ 01</span>
+          <h3>Strength</h3>
+          <p>Barbell-based lifting on a periodised program. Squat, hinge, press, pull — coached technique and progressive load tracked every week.</p>
+          <div class="tags"><span class="tag">55 min</span><span class="tag hot">Foundational</span></div>
+        </article>
+
+        <article class="cls">
+          <div class="cls-ico" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#D8FF3E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 4 10 22h9l-3 14 14-20h-9z"/>
+            </svg>
+          </div>
+          <span class="num">/ 02</span>
+          <h3>Pulse HIIT</h3>
+          <p>Intervals engineered for output. Rowers, bikes, and bodyweight in tight work-to-rest ratios that spike the heart rate and burn hard.</p>
+          <div class="tags"><span class="tag">45 min</span><span class="tag hot">High intensity</span></div>
+        </article>
+
+        <article class="cls">
+          <div class="cls-ico" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#D8FF3E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="20" cy="9" r="4"/><path d="M20 15v11M20 20l-9 5M20 20l9 5M20 26l-6 10M20 26l6 10"/>
+            </svg>
+          </div>
+          <span class="num">/ 03</span>
+          <h3>Mobility</h3>
+          <p>Controlled range, joint prep, and breath work that keeps you training injury-free. The unglamorous work that makes everything else possible.</p>
+          <div class="tags"><span class="tag">40 min</span><span class="tag">Restorative</span></div>
+        </article>
+
+        <article class="cls">
+          <div class="cls-ico" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#D8FF3E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 30 14 20l6 5 8-13 6 8"/><path d="M6 34h28"/>
+            </svg>
+          </div>
+          <span class="num">/ 04</span>
+          <h3>Engine</h3>
+          <p>Longer-format conditioning that builds an aerobic base. Sustainable pacing, mixed modalities, and the kind of engine that never quits.</p>
+          <div class="tags"><span class="tag">50 min</span><span class="tag">Endurance</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section class="sec" id="schedule" style="background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow reveal">This week</span>
+          <h2 class="reveal" style="margin-top:18px">The<br>schedule.</h2>
+        </div>
+        <span class="idx reveal">02 — Weekdays · 6AM–8PM</span>
+      </div>
+
+      <div class="sched-wrap reveal stagger-rows">
+        <div class="sched-scroll">
+          <table class="sched">
+            <thead>
+              <tr><th scope="col">Time</th><th scope="col">Class</th><th scope="col">Coach</th><th scope="col">Days</th><th scope="col">Intensity</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="time">06:00</td>
+                <td><span class="cname">Strength — Lower</span></td>
+                <td class="coach">Devon R.</td>
+                <td class="coach">Mon · Wed · Fri</td>
+                <td><span class="pill s">Heavy</span></td>
+              </tr>
+              <tr>
+                <td class="time">07:15</td>
+                <td><span class="cname">Pulse HIIT</span></td>
+                <td class="coach">Mara K.</td>
+                <td class="coach">Mon–Fri</td>
+                <td><span class="pill s">Max</span></td>
+              </tr>
+              <tr>
+                <td class="time">09:00</td>
+                <td><span class="cname">Engine</span></td>
+                <td class="coach">Theo N.</td>
+                <td class="coach">Tue · Thu · Sat</td>
+                <td><span class="pill">Moderate</span></td>
+              </tr>
+              <tr>
+                <td class="time">12:10</td>
+                <td><span class="cname">Express Strength</span></td>
+                <td class="coach">Devon R.</td>
+                <td class="coach">Mon–Fri</td>
+                <td><span class="pill s">Heavy</span></td>
+              </tr>
+              <tr>
+                <td class="time">17:30</td>
+                <td><span class="cname">Strength — Upper</span></td>
+                <td class="coach">Priya S.</td>
+                <td class="coach">Mon · Wed · Fri</td>
+                <td><span class="pill s">Heavy</span></td>
+              </tr>
+              <tr>
+                <td class="time">18:45</td>
+                <td><span class="cname">Pulse HIIT</span></td>
+                <td class="coach">Mara K.</td>
+                <td class="coach">Tue · Thu</td>
+                <td><span class="pill s">Max</span></td>
+              </tr>
+              <tr>
+                <td class="time">19:30</td>
+                <td><span class="cname">Mobility &amp; Reset</span></td>
+                <td class="coach">Priya S.</td>
+                <td class="coach">Wed · Sun</td>
+                <td><span class="pill">Easy</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="sched-note">Weekend open gym Sat 08:00–14:00 · Sun 09:00–13:00. Book any class up to 7 days ahead in the member app.</p>
+    </div>
+  </section>
+
+  <!-- MEMBERSHIP -->
+  <section class="sec" id="membership">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow reveal">Membership</span>
+          <h2 class="reveal" style="margin-top:18px">Pick your<br>commitment.</h2>
+        </div>
+        <span class="idx reveal">03 — No lock-in · Cancel anytime</span>
+      </div>
+
+      <div class="tiers reveal stagger">
+        <div class="tier">
+          <span class="tname">Drop-in</span>
+          <div class="price"><span class="amt">$28</span><span class="per">/ class</span></div>
+          <p class="desc">Test the waters with no commitment. Pay per session, whenever it suits you.</p>
+          <ul class="feats">
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#D8FF3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg>Any single class</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#D8FF3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg>Full equipment access</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#D8FF3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg>Free intro assessment</li>
+          </ul>
+          <a class="btn btn--ghost" href="#join">Book a class</a>
+        </div>
+
+        <div class="tier feat">
+          <span class="badge">Most popular</span>
+          <span class="tname">Unlimited</span>
+          <div class="price"><span class="amt">$189</span><span class="per">/ month</span></div>
+          <p class="desc">Unrestricted access to every class, every day. The sweet spot for consistent training.</p>
+          <ul class="feats">
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#D8FF3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg>Unlimited classes &amp; open gym</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#D8FF3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg>Personal progress tracking</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#D8FF3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg>Monthly 1:1 coach check-in</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#D8FF3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg>Guest passes each month</li>
+          </ul>
+          <a class="btn btn--acid" href="#join">Start free trial</a>
+        </div>
+
+        <div class="tier">
+          <span class="tname">Founding</span>
+          <div class="price"><span class="amt">$249</span><span class="per">/ month</span></div>
+          <p class="desc">Everything in Unlimited, plus dedicated coaching and priority on every booking.</p>
+          <ul class="feats">
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#D8FF3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg>Everything in Unlimited</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#D8FF3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg>Bi-weekly private coaching</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#D8FF3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg>Custom nutrition roadmap</li>
+            <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#D8FF3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg>Locked founding-member rate</li>
+          </ul>
+          <a class="btn btn--ghost" href="#join">Go founding</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COACHES / TESTIMONIAL -->
+  <section class="sec" id="coaches" style="background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow reveal">The people</span>
+          <h2 class="reveal" style="margin-top:18px">Coached,<br>not watched.</h2>
+        </div>
+        <span class="idx reveal">04 — Coaches &amp; members</span>
+      </div>
+
+      <div class="split reveal">
+        <div class="quote-cell">
+          <div class="qmark" aria-hidden="true">&ldquo;</div>
+          <blockquote>I added 40kg to my squat in five months. But the real win is showing up and actually knowing what I'm doing.</blockquote>
+          <div class="attr">
+            <div class="avatar" aria-hidden="true">
+              <svg width="46" height="46" viewBox="0 0 46 46" xmlns="http://www.w3.org/2000/svg">
+                <rect width="46" height="46" fill="#18181B"/>
+                <circle cx="23" cy="18" r="8" fill="#D8FF3E" opacity="0.85"/>
+                <path d="M8 44c0-9 7-15 15-15s15 6 15 15z" fill="#D8FF3E" opacity="0.85"/>
+              </svg>
+            </div>
+            <div>
+              <div class="who">Jordan Malik</div>
+              <div class="role">Member since 2023</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="coach-cell">
+          <div class="visual" aria-hidden="true">
+            <svg width="100%" height="180" viewBox="0 0 520 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="duo" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#D8FF3E" stop-opacity="0.22"/>
+                  <stop offset="100%" stop-color="#0C0C0D" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <rect width="520" height="180" fill="#0C0C0D"/>
+              <rect width="520" height="180" fill="url(#duo)"/>
+              <g stroke="#D8FF3E" stroke-opacity="0.5" stroke-width="2" fill="none" stroke-linecap="round">
+                <path d="M60 150 L60 96 L92 78 L120 100 L120 150"/>
+                <circle cx="92" cy="58" r="12"/>
+                <path d="M92 70 L92 104 M92 104 L64 122 M92 104 L120 122"/>
+              </g>
+              <g stroke="#F4F4F0" stroke-opacity="0.28" stroke-width="1.5" fill="none">
+                <path d="M180 40 H500 M180 80 H500 M180 120 H500"/>
+              </g>
+              <g fill="#D8FF3E" fill-opacity="0.9">
+                <rect x="360" y="96" width="14" height="54"/>
+                <rect x="384" y="66" width="14" height="84"/>
+                <rect x="408" y="112" width="14" height="38"/>
+                <rect x="432" y="48" width="14" height="102"/>
+                <rect x="456" y="84" width="14" height="66"/>
+              </g>
+            </svg>
+          </div>
+          <div class="coach-meta">
+            <span class="eyebrow" style="margin-bottom:14px">Head Coach</span>
+            <h3>Devon Reyes</h3>
+            <p>Twelve years coaching barbell strength, a CSCS certification, and a stubborn belief that great programming beats hard programming. Devon leads Pulse's strength track and mentors the coaching floor.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN CTA -->
+  <section class="join" id="join">
+    <div class="join-svg" aria-hidden="true">
+      <svg width="100%" height="100%" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#0C0C0D" stroke-opacity="0.16" stroke-width="2" fill="none">
+          <path d="M-40 520 L520 -20"/><path d="M120 520 L680 -20"/><path d="M280 520 L840 -20"/>
+          <path d="M440 520 L1000 -20"/><path d="M600 520 L1160 -20"/><path d="M760 520 L1320 -20"/>
+          <path d="M920 520 L1480 -20"/><path d="M1080 520 L1640 -20"/>
+        </g>
+        <circle cx="1180" cy="120" r="180" fill="none" stroke="#0C0C0D" stroke-opacity="0.14" stroke-width="2"/>
+      </svg>
+    </div>
+    <div class="wrap">
+      <span class="eyebrow reveal" style="color:#20240a">Your first class is on us</span>
+      <h2 class="reveal" style="margin-top:20px">Stop<br>waiting.</h2>
+      <p class="reveal">Book a free intro session, meet a coach, and lift under real supervision. No pressure, no contract — just one honest hour to see if Pulse is for you.</p>
+      <a class="btn btn--dark btn--lg reveal" href="#top">Claim your free class <span class="arw" aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <a href="#top" class="brand" aria-label="Pulse home"><span class="dot" aria-hidden="true"></span>Pulse</a>
+          <p class="blurb">A boutique strength &amp; conditioning studio in Calgary's Beltline. Coached small-group training, built to make you measurably stronger.</p>
+        </div>
+        <div>
+          <h4>Studio</h4>
+          <ul>
+            <li><a href="#classes">Classes</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#membership">Membership</a></li>
+            <li><a href="#coaches">Coaches</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="#">1120 11 Ave SW</a></li>
+            <li><a href="#">Calgary, AB T2R 0G4</a></li>
+            <li><a href="#">hello@pulse.studio</a></li>
+            <li><a href="#">(403) 555-0142</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">TikTok</a></li>
+            <li><a href="#">YouTube</a></li>
+            <li><a href="#">Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bar">
+        <span class="copy">© 2026 Pulse Strength Studio Inc. All rights reserved.</span>
+        <span class="credit">Site by <a href="#">Kontora Designs</a></span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  // Progressive enhancement only. Content is fully visible without JS,
+  // and fully visible immediately under ?embed / reduced-motion (html.is-embed).
+  (function(){
+    var root=document.documentElement;
+    var embed=root.classList.contains('is-embed');
+
+    // Smooth in-page anchor scrolling (always on, harmless in embed).
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click',function(ev){
+        var id=a.getAttribute('href');
+        if(id.length<2) return;
+        var t=document.querySelector(id);
+        if(t){ev.preventDefault();t.scrollIntoView({behavior:embed?'auto':'smooth',block:'start'});}
+      });
+    });
+
+    // Under embed / reduced-motion: no entrance motion, nothing to gate. Done.
+    if(embed) return;
+
+    // ---- Animated number count-ups ----
+    function runCount(el){
+      if(el.dataset.done) return; el.dataset.done='1';
+      var to=parseFloat(el.getAttribute('data-to'))||0;
+      var dur=parseInt(el.getAttribute('data-dur'),10)||1200;
+      var dec=parseInt(el.getAttribute('data-dec'),10)||0;
+      var sep=el.getAttribute('data-sep')==='1';
+      var start=null;
+      function fmt(v){
+        var s=v.toFixed(dec);
+        if(sep){var p=s.split('.');p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,',');s=p.join('.');}
+        return s;
+      }
+      function step(ts){
+        if(start===null) start=ts;
+        var p=Math.min((ts-start)/dur,1);
+        var eased=1-Math.pow(1-p,3); // easeOutCubic
+        el.textContent=fmt(to*eased);
+        if(p<1) requestAnimationFrame(step); else el.textContent=fmt(to);
+      }
+      // prime at zero so the count reads as motion, then animate
+      el.textContent=fmt(0);
+      requestAnimationFrame(step);
+    }
+
+    // ---- Scroll reveal via IntersectionObserver ----
+    var supportsIO='IntersectionObserver'in window;
+    if(supportsIO){
+      var io=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+            e.target.querySelectorAll&&e.target.querySelectorAll('.count').forEach(runCount);
+          }
+        });
+      },{threshold:0.14,rootMargin:'0px 0px -8% 0px'});
+      document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+    }else{
+      // No IO: reveal immediately.
+      root.classList.add('reveal-all');
+    }
+
+    // Hero stats count up shortly after load (hero is above the fold).
+    setTimeout(function(){document.querySelectorAll('.hero .count').forEach(runCount);},520);
+
+    // ---- Scroll progress bar + auto-hiding nav ----
+    var bar=document.querySelector('.scroll-prog');
+    var nav=document.querySelector('header.nav');
+    var lastY=window.pageYOffset||0, ticking=false;
+    function onScroll(){
+      var y=window.pageYOffset||document.documentElement.scrollTop||0;
+      var h=document.documentElement.scrollHeight-window.innerHeight;
+      if(bar) bar.style.transform='scaleX('+(h>0?Math.min(y/h,1):0)+')';
+      if(nav){
+        if(y>lastY&&y>160) nav.classList.add('nav-hidden');
+        else nav.classList.remove('nav-hidden');
+      }
+      lastY=y; ticking=false;
+    }
+    window.addEventListener('scroll',function(){
+      if(!ticking){ticking=true;requestAnimationFrame(onScroll);}
+    },{passive:true});
+    onScroll();
+
+    // ---- Safety net: never leave content stuck hidden (~1.2s) ----
+    setTimeout(function(){
+      root.classList.add('reveal-all');
+      document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
+      document.querySelectorAll('.count').forEach(runCount);
+    },1200);
+  })();
+</script>
+</body>
+</html>

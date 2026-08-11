@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://flood0527.github.io/kontora-designs/sitemap.xml

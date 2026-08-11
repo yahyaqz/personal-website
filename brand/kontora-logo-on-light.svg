@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 372 72" width="372" height="72" role="img" aria-label="Kontora Designs">
+	<!-- Full horizontal lockup for light backgrounds (transparent). Wordmark: Archivo. -->
+	<g transform="translate(6,4)">
+		<path d="M18 14 v36" stroke="#0C0A0B" stroke-width="7" stroke-linecap="square"/>
+		<path d="M46 14 L26 32 L46 50" stroke="#C0707F" stroke-width="7" stroke-linecap="square" fill="none"/>
+	</g>
+	<text x="86" y="40" font-family="Archivo, 'Helvetica Neue', Arial, sans-serif" font-size="31" font-weight="800" letter-spacing="2" fill="#0C0A0B">KONTORA</text>
+	<text x="88" y="60" font-family="Archivo, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" letter-spacing="8" fill="#9E4A5B">DESIGNS</text>
+</svg>
