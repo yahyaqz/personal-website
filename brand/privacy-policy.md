@@ -1,8 +1,8 @@
-# Privacy Policy — Kontora Designs
+# Privacy Policy — Avero Designs
 
 _Last updated 10 August 2026_
 
-Kontora Designs ("we", "us") builds websites for businesses in Calgary and beyond. This policy explains what information we collect through this website, why we collect it, and the choices you have. We keep data collection to the minimum needed to reply to you and run the site.
+Avero Designs ("we", "us") builds websites for businesses in Calgary and beyond. This policy explains what information we collect through this website, why we collect it, and the choices you have. We keep data collection to the minimum needed to reply to you and run the site.
 
 ## Information we collect
 
@@ -35,7 +35,7 @@ We keep enquiry messages only as long as needed to respond and to maintain a rec
 
 ## Your rights
 
-You may ask to access, correct, or delete the personal information you have shared with us, or withdraw consent for us to hold it. To do so, email hello@kontoradesigns.com and we will respond within a reasonable time. Residents of Alberta and Canada have these rights under applicable privacy law (including PIPA and PIPEDA); residents elsewhere may have equivalent rights.
+You may ask to access, correct, or delete the personal information you have shared with us, or withdraw consent for us to hold it. To do so, email hello@averodesigns.com and we will respond within a reasonable time. Residents of Alberta and Canada have these rights under applicable privacy law (including PIPA and PIPEDA); residents elsewhere may have equivalent rights.
 
 ## Security
 
@@ -51,7 +51,7 @@ We may update this policy from time to time. The "last updated" date above refle
 
 ## Contact
 
-Questions about privacy? Email hello@kontoradesigns.com, or write to Kontora Designs, Calgary, Alberta, Canada.
+Questions about privacy? Email hello@averodesigns.com, or write to Avero Designs, Calgary, Alberta, Canada.
 
 ---
 

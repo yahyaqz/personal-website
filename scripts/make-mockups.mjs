@@ -290,7 +290,7 @@ function redesignBefore() {
 	return svg(W, H, s, bg);
 }
 
-/** The "after": the same business, rebuilt in the Kontora language. */
+/** The "after": the same business, rebuilt in the Avero language. */
 function redesignAfter() {
 	const W = 1440;
 	const H = 900;

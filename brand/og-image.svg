@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Kontora Designs — Premium Web Design in Calgary">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Avero Designs — Premium Web Design in Calgary">
 	<defs>
 		<radialGradient id="glow" cx="26%" cy="-6%" r="80%">
 			<stop offset="0%" stop-color="#2a1c20" />
@@ -20,9 +20,9 @@
 	<!-- brand mark + wordmark -->
 	<g transform="translate(96, 104)">
 		<rect width="52" height="52" rx="11" fill="#141112" stroke="#ffffff" stroke-opacity="0.08" />
-		<path d="M16 12 v28" stroke="#ECE6E5" stroke-width="6" stroke-linecap="square" />
-		<path d="M39 12 L23 26 L39 40" stroke="#C0707F" stroke-width="6" stroke-linecap="square" fill="none" />
-		<text x="72" y="26" font-family="Archivo, 'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="3" fill="#ECE6E5">KONTORA</text>
+		<path d="M15 40 L27 12 L39 40" fill="none" stroke-linejoin="round" stroke="#ECE6E5" stroke-width="6" stroke-linecap="square" />
+		<path d="M20 31 H34" stroke="#C0707F" stroke-width="6" stroke-linecap="square" fill="none" />
+		<text x="72" y="26" font-family="Archivo, 'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="3" fill="#ECE6E5">AVERO</text>
 		<text x="72" y="46" font-family="Archivo, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" letter-spacing="7" fill="#e6afb9">DESIGNS</text>
 	</g>
 
@@ -36,5 +36,5 @@
 	<!-- footer meta -->
 	<line x1="96" y1="536" x2="1104" y2="536" stroke="#ffffff" stroke-opacity="0.08" />
 	<text x="96" y="566" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" letter-spacing="3" fill="#948a8c">CALGARY, ALBERTA</text>
-	<text x="1104" y="566" text-anchor="end" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" letter-spacing="3" fill="#948a8c">KONTORADESIGNS.COM</text>
+	<text x="1104" y="566" text-anchor="end" font-family="'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="600" letter-spacing="3" fill="#948a8c">AVERODESIGNS.COM</text>
 </svg>

@@ -2,7 +2,7 @@
 	"version": "0.0.1",
 	"configurations": [
 		{
-			"name": "kontora",
+			"name": "avero",
 			"runtimeExecutable": "npm",
 			"runtimeArgs": ["run", "dev"],
 			"port": 5180

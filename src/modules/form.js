@@ -9,7 +9,7 @@ import { prefersReducedMotion } from './env.js';
  * into FORM_ENDPOINT below, and you're done — no other change needed.
  */
 const FORM_ENDPOINT = ''; // e.g. 'https://formspree.io/f/xxxxxxxx'
-const CONTACT_EMAIL = 'hello@kontoradesigns.com';
+const CONTACT_EMAIL = 'hello@averodesigns.com';
 export function initForm() {
 	const form = document.querySelector('[data-form]');
 	if (!form) return;

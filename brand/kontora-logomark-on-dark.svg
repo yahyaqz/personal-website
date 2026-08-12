@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Kontora Designs logomark">
-	<!-- Logomark for dark backgrounds (transparent). Bar: bone, chevron: dusty rose. -->
-	<path d="M18 14 v36" stroke="#ECE6E5" stroke-width="7" stroke-linecap="square"/>
-	<path d="M46 14 L26 32 L46 50" stroke="#C0707F" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter" fill="none"/>
-</svg>

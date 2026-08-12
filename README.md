@@ -1,4 +1,4 @@
-# Kontora Designs
+# Avero Designs
 
 Single-page agency site. Vanilla JS + Vite, with GSAP/ScrollTrigger for scroll
 choreography and Lenis for smooth scrolling.
