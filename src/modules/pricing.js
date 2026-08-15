@@ -4,31 +4,30 @@ import { prefersReducedMotion } from './env.js';
 /* ==========================================================================
    PRICING CONFIG — this object is the only place prices are defined.
 
-   The "+$750" labels in the markup are rendered from `addons` on load, so you
+   The "+$xx" labels in the markup are rendered from `addons` on load, so you
    never have to keep a number in two places. All values are CAD.
    ========================================================================== */
 export const PRICING = {
-	/** Foundation: custom design, responsive build, motion, basic SEO, launch.
-	 *  Includes the first page. */
-	base: 2400,
+	/** Foundation: everything the client already has, rebuilt into a modern,
+	 *  professional, polished and advanced website. Includes the first page. */
+	base: 500,
 
 	/** Charged for every page beyond the first. */
-	perPage: 400,
+	perPage: 150,
 
 	/** Page-slider bounds. The top of the scale is presented as "20+". */
 	minPages: 1,
 	maxPages: 20,
 	defaultPages: 5,
 
-	/** Add-ons, keyed by the `data-opt` value in the markup. */
+	/** Add-ons, keyed by the `data-opt` value in the markup.
+	 *  Website Maintenance is $100/mo OR $1,000 one-time; the one-time figure is
+	 *  what folds into this one-time estimate. */
 	addons: {
-		logo: { label: 'Logo Design', price: 750 },
-		brand: { label: 'Branding', price: 1800 },
-		care: { label: 'Website Maintenance', price: 480 },
-		motion: { label: 'Advanced Animations', price: 1200 },
-		lang: { label: 'Additional Languages', price: 650 },
-		cms: { label: 'CMS / Editable Website', price: 900 },
-		forms: { label: 'Extra Forms', price: 300 }
+		forms: { label: 'Extra Forms', price: 75 },
+		logo: { label: 'Logo Design', price: 75 },
+		motion: { label: 'Advanced Animations', price: 100 },
+		care: { label: 'Website Maintenance', price: 1000 }
 	},
 
 	/**
@@ -248,12 +247,9 @@ export function initPricing() {
 
 /** Add-ons that show as a badge, and the glyph each one gets. */
 const BADGES = {
+	forms: '✉',
 	logo: '◆',
-	brand: '◼',
-	care: '⟳',
-	lang: '⌘',
-	cms: '✎',
-	forms: '✉'
+	care: '⟳'
 };
 
 /** How many page nodes to draw before switching to a "+N" summary chip. */
