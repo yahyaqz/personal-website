@@ -24,7 +24,6 @@ import { initServices, initShowMore, initProcess, initAccordion } from './module
 import {
 	initBeforeAfter,
 	initDevices,
-	initSpotlight,
 	initInversion,
 	initOdometer,
 	initProjectHover
@@ -57,11 +56,10 @@ function boot() {
 	initProcess();
 	initAccordion();
 
-	// The three interactions that demonstrate the service, plus the chapter
+	// The interactions that demonstrate the service, plus the chapter
 	// inversion that frames them.
 	initBeforeAfter();
 	initDevices();
-	initSpotlight();
 	initInversion();
 	initOdometer();
 	// Uses x/y in pixels; the scroll parallax uses yPercent, so they compose
