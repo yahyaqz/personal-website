@@ -186,16 +186,27 @@
 
 .nav__brand {
 	display: flex;
-	align-items: baseline;
+	align-items: center;
 	min-height: 2.75rem;
-	align-content: center;
-	flex-wrap: wrap;
-	gap: 0.45rem;
+	gap: 0.6rem;
 	font-family: var(--font-display);
 	font-weight: 700;
 	font-size: 0.9375rem;
 	letter-spacing: 0.04em;
 	margin-inline-end: auto;
+}
+
+.nav__mark {
+	height: 2rem;
+	width: auto;
+	display: block;
+	flex: none;
+}
+
+.nav__brand-text {
+	display: flex;
+	align-items: baseline;
+	gap: 0.45rem;
 }
 
 .nav__brand-sub {
