@@ -17,7 +17,7 @@ import { prefersReducedMotion } from './env.js';
  * The key is safe to commit: Web3Forms keys are public by design and are
  * restricted to your allowed domain(s) in the dashboard.
  */
-const WEB3FORMS_KEY = ''; // ← paste your Web3Forms access key here
+const WEB3FORMS_KEY = '86e03a49-a0e7-452a-bcf6-5dc232cf27f6'; // ← paste your Web3Forms access key here
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 const CONTACT_EMAIL = 'hello@averodesigns.com';
 export function initForm() {
