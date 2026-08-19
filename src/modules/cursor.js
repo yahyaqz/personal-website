@@ -11,7 +11,7 @@ import { hasFinePointer, prefersReducedMotion } from './env.js';
 /** `data-cursor` values that swell the ring into a labelled pill. Other values
  *  (`link`, `hide`) are handled as states, not labels. */
 const LABELS = {
-	view: 'View Project ↗',
+	view: 'View Project ↗︎',
 	peek: 'View'
 };
 
