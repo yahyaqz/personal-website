@@ -2,13 +2,23 @@ import gsap from 'gsap';
 import { prefersReducedMotion } from './env.js';
 
 /**
- * Contact form. Submissions POST to FORM_ENDPOINT when one is set; until then
- * they hand off to the visitor's email client with everything pre-filled, so no
- * enquiry is ever lost. To receive submissions straight to your inbox, create a
- * free form at https://formspree.io (or Getform/Basin/Web3Forms), paste its URL
- * into FORM_ENDPOINT below, and you're done — no other change needed.
+ * Contact form. Submissions POST straight to Web3Forms — which emails them to
+ * CONTACT_EMAIL — as soon as WEB3FORMS_KEY is set. Until then they fall back to
+ * the visitor's email client with every field pre-filled, so no enquiry is ever
+ * lost and the site keeps working in the meantime.
+ *
+ * SET IT UP (≈2 min, free, no backend, no server to run):
+ *   1. Go to https://web3forms.com and enter your inbox (hello@averodesigns.com).
+ *   2. Web3Forms emails you an "access key" — paste it into WEB3FORMS_KEY below.
+ *   3. Redeploy. Submissions now arrive straight in your inbox — no email app.
+ *   4. (Optional, in the Web3Forms dashboard) turn on the "Auto-reply" so the
+ *      client gets a confirmation email too, and lock the key to your domain.
+ *
+ * The key is safe to commit: Web3Forms keys are public by design and are
+ * restricted to your allowed domain(s) in the dashboard.
  */
-const FORM_ENDPOINT = ''; // e.g. 'https://formspree.io/f/xxxxxxxx'
+const WEB3FORMS_KEY = ''; // ← paste your Web3Forms access key here
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 const CONTACT_EMAIL = 'hello@averodesigns.com';
 export function initForm() {
 	const form = document.querySelector('[data-form]');
@@ -89,13 +99,25 @@ export function initForm() {
  * caller can word the confirmation accordingly. Throws on a failed POST.
  */
 async function deliver(payload) {
-	if (FORM_ENDPOINT) {
-		const res = await fetch(FORM_ENDPOINT, {
+	if (WEB3FORMS_KEY) {
+		const res = await fetch(WEB3FORMS_ENDPOINT, {
 			method: 'POST',
 			headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
-			body: JSON.stringify(payload)
+			body: JSON.stringify({
+				access_key: WEB3FORMS_KEY,
+				subject: `New project enquiry — ${payload.name || payload.business || 'Website'}`,
+				from_name: 'Avero Designs website',
+				// A reply from your inbox then goes straight back to the client.
+				replyto: payload.email || '',
+				...payload
+			})
 		});
-		if (!res.ok) throw new Error(`Form endpoint responded ${res.status}`);
+		// Web3Forms can return 200 with { success: false } (e.g. spam/bad key),
+		// so check the body, not just the HTTP status.
+		const data = await res.json().catch(() => ({}));
+		if (!res.ok || data.success === false) {
+			throw new Error(data.message || `Form endpoint responded ${res.status}`);
+		}
 		return 'endpoint';
 	}
 

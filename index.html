@@ -853,6 +853,9 @@
 					<p class="modal__lede">A few details is all we need — we’ll reply within one business day.</p>
 				</div>
 						<form class="form" data-form novalidate>
+							<!-- Web3Forms spam honeypot: hidden from people, tempting to bots.
+							     If it comes back checked, Web3Forms drops the submission. -->
+							<input type="checkbox" name="botcheck" style="display: none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 							<div class="form__row">
 								<div class="field">
 									<input id="f-name" name="name" type="text" placeholder=" " autocomplete="name" required />
