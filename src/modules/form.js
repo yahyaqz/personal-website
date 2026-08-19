@@ -95,10 +95,33 @@ export function initForm() {
 }
 
 /**
- * Deliver a submission. Returns the method used ('endpoint' | 'mailto') so the
- * caller can word the confirmation accordingly. Throws on a failed POST.
+ * Deliver a submission through the best available channel, in order:
+ *   1. /api/submit  — our Vercel + Resend function (emails the studio AND sends
+ *                     the client a confirmation). Preferred once deployed.
+ *   2. Web3Forms    — no-backend fallback, so the form keeps working while the
+ *                     Vercel function / Resend domain are still being set up.
+ *   3. mailto:      — last resort, hands off to the visitor's email client.
+ * Returns the method used ('endpoint' | 'mailto') so the caller can word the
+ * confirmation accordingly.
  */
 async function deliver(payload) {
+	// 1) Our own Vercel + Resend endpoint.
+	try {
+		const res = await fetch('/api/submit', {
+			method: 'POST',
+			headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+			body: JSON.stringify(payload)
+		});
+		// Only treat it as delivered on a real JSON success — on the dev server
+		// (no functions) this route returns HTML, which must fall through.
+		const data = res.ok ? await res.json().catch(() => null) : null;
+		if (data && data.success) return 'endpoint';
+		console.warn('[form] /api/submit unavailable, falling back:', res.status);
+	} catch (err) {
+		console.warn('[form] /api/submit error, falling back:', err);
+	}
+
+	// 2) Web3Forms fallback.
 	if (WEB3FORMS_KEY) {
 		const res = await fetch(WEB3FORMS_ENDPOINT, {
 			method: 'POST',
