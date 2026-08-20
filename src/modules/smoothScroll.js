@@ -70,11 +70,12 @@ export function scrollTo(target, opts = {}) {
 		const distance = Math.abs(to - lenis.scroll);
 		const duration = Math.min(1.2, Math.max(0.6, distance / 3200));
 
-		// Stop clear of the fixed bar so the section heading isn't parked behind
-		// it (the bar stays visible through the jump). Anything above the hero
-		// guard — i.e. #top — wants the very top, not an inset.
+		// Stop exactly at the bottom edge of the fixed bar so the section lands
+		// flush beneath it — no gap, no sliver of the previous section. Use the
+		// bar's real height (no fudge), or fall back to --nav-h. Anything above
+		// the hero guard — i.e. #top — wants the very top, not an inset.
 		const bar = document.querySelector('[data-nav]');
-		const clearance = typeof target === 'number' ? 0 : bar ? bar.offsetHeight + 8 : 76;
+		const clearance = typeof target === 'number' ? 0 : bar ? bar.offsetHeight : 76;
 
 		// Freeze the nav auto-hide for the length of the trip (nav.js watches this
 		// flag) so the bar doesn't fight the programmatic scroll.
