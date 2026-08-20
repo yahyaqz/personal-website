@@ -24,7 +24,6 @@ export const PRICING = {
 	 *  Website Maintenance is $100/mo OR $1,000 one-time; the one-time figure is
 	 *  what folds into this one-time estimate. */
 	addons: {
-		forms: { label: 'Extra Forms', price: 75 },
 		logo: { label: 'Logo Design', price: 75 },
 		motion: { label: 'Advanced Animations', price: 100 },
 		care: { label: 'Website Maintenance', price: 1000 }
@@ -247,7 +246,6 @@ export function initPricing() {
 
 /** Add-ons that show as a badge, and the glyph each one gets. */
 const BADGES = {
-	forms: '✉',
 	logo: '◆',
 	care: '⟳'
 };
