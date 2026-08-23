@@ -96,6 +96,13 @@ function initScrollBehaviour(nav) {
 function initActiveLinks() {
 	const links = [...document.querySelectorAll('[data-nav-link]')];
 
+	// Mark a section "current" while it straddles a line just below the fixed
+	// nav — the same spot a clicked section lands at. Keying off the viewport
+	// *centre* instead put the active line inside the next section whenever a
+	// section was shorter than half the viewport, so clicking one link lit up
+	// the following link. A function keeps the offset correct across refreshes.
+	const activeLine = () => `${(document.querySelector('[data-nav]')?.offsetHeight || 76) + 24}px`;
+
 	links.forEach((link) => {
 		const id = link.getAttribute('href');
 		const section = document.querySelector(id);
@@ -103,10 +110,13 @@ function initActiveLinks() {
 
 		ScrollTrigger.create({
 			trigger: section,
-			start: 'top center',
-			end: 'bottom center',
+			start: () => `top ${activeLine()}`,
+			end: () => `bottom ${activeLine()}`,
 			onToggle(self) {
 				if (!self.isActive) return;
+				// During a click-to-scroll jump the clicked link is already lit;
+				// don't let sections the scroll passes through steal the indicator.
+				if (document.documentElement.classList.contains('is-anchoring')) return;
 				document.dispatchEvent(new CustomEvent('nav:active', { detail: { link } }));
 			}
 		});
