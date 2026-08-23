@@ -3,10 +3,10 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Avero Designs — Premium Web Design in Calgary</title>
+		<title>Avero Designs — Premium Web Design &amp; Digital Experiences</title>
 		<meta
 			name="description"
-			content="Avero Designs is a Calgary web design studio building premium websites and digital identities for businesses that want a stronger, more professional online presence."
+			content="Avero Designs creates premium websites and digital experiences for businesses looking to build a stronger online presence."
 		/>
 		<!-- Point these three at wherever the site actually lives. A canonical
 		     aimed at a domain you don't own yet would keep the live site out of
@@ -17,10 +17,10 @@
 
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="Avero Designs" />
-		<meta property="og:title" content="Avero Designs — Premium Web Design in Calgary" />
+		<meta property="og:title" content="Avero Designs — Premium Web Design &amp; Digital Experiences" />
 		<meta
 			property="og:description"
-			content="Websites and digital identities for businesses that want to look as professional online as they are in real life."
+			content="Avero Designs creates premium websites and digital experiences for businesses looking to build a stronger online presence."
 		/>
 		<meta property="og:url" content="https://averodesigns.com/" />
 		<meta property="og:locale" content="en_CA" />
@@ -31,35 +31,50 @@
 		<meta property="og:image:alt" content="Avero Designs — your website can do more." />
 
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Avero Designs — Premium Web Design in Calgary" />
+		<meta name="twitter:title" content="Avero Designs — Premium Web Design &amp; Digital Experiences" />
 		<meta
 			name="twitter:description"
-			content="Websites and digital identities for businesses that want to look as professional online as they are in real life."
+			content="Avero Designs creates premium websites and digital experiences for businesses looking to build a stronger online presence."
 		/>
 		<meta name="twitter:image" content="https://averodesigns.com/og-image.png" />
 		<meta name="robots" content="index, follow" />
 
-		<link rel="icon" href="/favicon.png" type="image/png" />
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<!-- Favicons — Google Search reads the head-declared icon (and /favicon.ico
+		     as a fallback). Square PNG + multi-size ICO, none blocked by robots.txt. -->
+		<link rel="icon" href="/favicon.ico" sizes="any" />
+		<link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<link rel="manifest" href="/site.webmanifest" />
 
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
-				"@type": "ProfessionalService",
-				"name": "Avero Designs",
-				"description": "Premium web design and digital identity studio in Calgary, Alberta.",
-				"url": "https://averodesigns.com/",
-				"telephone": "+1-825-488-5073",
-				"email": "contact@averodesigns.com",
-				"priceRange": "$$$",
-				"address": {
-					"@type": "PostalAddress",
-					"addressLocality": "Calgary",
-					"addressRegion": "AB",
-					"addressCountry": "CA"
-				},
-				"areaServed": { "@type": "AdministrativeArea", "name": "Alberta, Canada" }
+				"@graph": [
+					{
+						"@type": "Organization",
+						"@id": "https://averodesigns.com/#organization",
+						"name": "Avero Designs",
+						"alternateName": "Avero",
+						"url": "https://averodesigns.com/",
+						"description": "Avero Designs creates premium websites and digital experiences for businesses looking to build a stronger online presence.",
+						"logo": {
+							"@type": "ImageObject",
+							"url": "https://averodesigns.com/avero-monogram.png",
+							"width": 745,
+							"height": 760
+						},
+						"image": "https://averodesigns.com/og-image.png"
+					},
+					{
+						"@type": "WebSite",
+						"@id": "https://averodesigns.com/#website",
+						"name": "Avero Designs",
+						"alternateName": "Avero Designs Studio",
+						"url": "https://averodesigns.com/",
+						"inLanguage": "en-CA",
+						"publisher": { "@id": "https://averodesigns.com/#organization" }
+					}
+				]
 			}
 		</script>
 

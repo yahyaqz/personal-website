@@ -1,7 +1,7 @@
 {
 	"name": "Avero Designs",
 	"short_name": "Avero",
-	"description": "Premium web design and digital identity studio in Calgary, Alberta.",
+	"description": "Avero Designs creates premium websites and digital experiences for businesses looking to build a stronger online presence.",
 	"start_url": "./",
 	"scope": "./",
 	"display": "standalone",
