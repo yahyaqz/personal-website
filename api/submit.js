@@ -9,7 +9,7 @@
  *   RESEND_API_KEY  (required)  from https://resend.com/api-keys
  *   OWNER_EMAIL     (required)  inbox that receives enquiries (your real email)
  *   FROM_EMAIL      (optional)  verified Resend sender, e.g.
- *                               "Avero Designs <hello@averodesigns.com>".
+ *                               "Avero Designs <contact@averodesigns.com>".
  *                               Defaults to Resend's shared test sender, which
  *                               can only email YOUR OWN account address — so the
  *                               CLIENT confirmation is skipped until you set this
@@ -103,7 +103,7 @@ function shell({ origin, preheader, eyebrow, heading, intro, bodyHtml }) {
 			</td></tr>
 			<tr><td style="background:${C.warmWhite};border-top:1px solid ${C.line};padding:22px 32px">
 				<div style="font:600 13px/1.5 ${FONT};color:${C.text}">Avero Designs</div>
-				<div style="font:400 12px/1.6 ${FONT};color:${C.muted}">Premium web design &amp; digital identity · Calgary, AB<br><a href="mailto:hello@averodesigns.com" style="color:${C.muted};text-decoration:underline">hello@averodesigns.com</a></div>
+				<div style="font:400 12px/1.6 ${FONT};color:${C.muted}">Premium web design &amp; digital identity · Calgary, AB<br><a href="mailto:contact@averodesigns.com" style="color:${C.muted};text-decoration:underline">contact@averodesigns.com</a></div>
 			</td></tr>
 		</table>
 		<div style="font:400 11px/1.5 ${FONT};color:${C.faint};margin-top:16px">Sent by the Avero Designs website</div>

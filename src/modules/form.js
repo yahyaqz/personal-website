@@ -8,7 +8,7 @@ import { prefersReducedMotion } from './env.js';
  * lost and the site keeps working in the meantime.
  *
  * SET IT UP (≈2 min, free, no backend, no server to run):
- *   1. Go to https://web3forms.com and enter your inbox (hello@averodesigns.com).
+ *   1. Go to https://web3forms.com and enter your inbox (contact@averodesigns.com).
  *   2. Web3Forms emails you an "access key" — paste it into WEB3FORMS_KEY below.
  *   3. Redeploy. Submissions now arrive straight in your inbox — no email app.
  *   4. (Optional, in the Web3Forms dashboard) turn on the "Auto-reply" so the
@@ -19,7 +19,7 @@ import { prefersReducedMotion } from './env.js';
  */
 const WEB3FORMS_KEY = '86e03a49-a0e7-452a-bcf6-5dc232cf27f6'; // ← paste your Web3Forms access key here
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
-const CONTACT_EMAIL = 'hello@averodesigns.com';
+const CONTACT_EMAIL = 'contact@averodesigns.com';
 export function initForm() {
 	const form = document.querySelector('[data-form]');
 	if (!form) return;
