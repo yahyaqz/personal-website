@@ -14,6 +14,10 @@ import { prefersReducedMotion, onResize } from './env.js';
 const AMPLITUDE = 3.1; // vertical wobble in viewBox units
 const SEGMENTS = 5;
 
+// Hidden state pushes the dash a hair past the path so the round line-cap
+// (2px) never leaves a stray dot from sub-pixel rounding of the offset.
+const HIDE_PAD = 2;
+
 /** Deterministic per-link jitter — stable across resizes, different per link. */
 function noise(seed, i) {
 	const x = Math.sin(seed * 41.7 + i * 17.3) * 43758.5453;
@@ -64,7 +68,7 @@ export function initSquiggles() {
 		slot.replaceChildren(svg);
 
 		const length = path.getTotalLength();
-		gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+		gsap.set(path, { strokeDasharray: length, strokeDashoffset: length + HIDE_PAD });
 
 		return { link, path, length, seed: index + 1, width, height };
 	}
@@ -99,7 +103,7 @@ export function initSquiggles() {
 		gsap.killTweensOf(entry.path);
 
 		if (reduced) {
-			gsap.set(entry.path, { strokeDashoffset: entry.length });
+			gsap.set(entry.path, { strokeDashoffset: entry.length + HIDE_PAD });
 			return;
 		}
 
@@ -127,7 +131,7 @@ export function initSquiggles() {
 			const drawn = entry === active;
 			gsap.set(entry.path, {
 				strokeDasharray: entry.length,
-				strokeDashoffset: drawn ? 0 : entry.length
+				strokeDashoffset: drawn ? 0 : entry.length + HIDE_PAD
 			});
 		});
 	});
